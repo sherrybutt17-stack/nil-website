@@ -211,6 +211,17 @@ src/lib/{inquiry-schema,deliver,metadata,og,utils}.ts(x)
   - Lighthouse mobile on the homepage: Flare 99 (LCP 0.91 s) and Night 99 (LCP 1.02 s), with CLS 0.
 - **Comparison board.** https://claude.ai/artifact/Pqt16xH3iFxEJPZEC7gZBj is private and now out of date: it shows five palettes and the old homepage.
 
+## GitHub repo and Pages (2026-10-28)
+
+- **Repo.** git@github.com:sherrybutt17-stack/nil-website.git, branch `main`. The commit author is `sherrybutt17-stack <sherrybutt17@gmail.com>`, set in the repo-local config.
+- **Hosting.** The user chose GitHub Pages over Vercel. Two empty Vercel projects, `nil-flare` and `nil-night` in team `shaheer4`, still exist from an aborted attempt; delete them only if the user asks.
+- **Static export.** `NEXT_PUBLIC_STATIC_EXPORT=true` switches `next.config.ts` to `output: 'export'`, with `basePath`, `trailingSlash`, unoptimized images and `typescript.ignoreBuildErrors`. The workflow runs typecheck and lint first, so skipping the type check during export is safe.
+  - `scripts/build-pages.mjs` moves `src/app/api` aside during the export (it always restores it), builds flare at `/nil-website` and night at `/nil-website/night`, then combines the results into `pages-dist/`.
+  - Forms post straight to `NEXT_PUBLIC_INQUIRY_ENDPOINT` (repo variable `INQUIRY_ENDPOINT`) when it is set. Otherwise they show `not_configured`. The payload is built by the shared `src/lib/inquiry-payload.ts`.
+- **Icons and share images** are real `.png` route handlers: `favicon.png`, `apple-touch-icon.png` and `og/[image]` (content in `src/lib/og-images.ts`). They are referenced with absolute URLs built from `site.url`.
+  - The `icon.tsx` and `opengraph-image.tsx` conventions were dropped. Their `<link>` tags lacked `basePath`, and their files had no extension, so Pages served them with the wrong content type.
+  - Metadata routes declare `dynamic = 'force-static'`.
+
 ## Verification results (2026-10-28)
 
 - `npm run lint`, `npm run typecheck` and `npm run build` are clean. Every page is static, and only `/api/inquiries` is dynamic.

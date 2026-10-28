@@ -1,4 +1,4 @@
-import { legal } from '@/content/site'
+import { buildInquiryPayload } from '@/lib/inquiry-payload'
 import type { FormType, Inquiry } from '@/lib/inquiry-schema'
 
 /**
@@ -20,14 +20,8 @@ export async function deliverInquiry(inquiry: Inquiry): Promise<DeliveryResult> 
   const endpoint = resolveEndpoint(inquiry.formType)
   if (!endpoint) return { status: 'not_configured' }
 
-  const { formType, ...data } = inquiry
-  const payload = {
-    formType,
-    submittedAt: new Date().toISOString(),
-    source: 'nil-website',
-    consentVersion: legal.version,
-    data,
-  }
+  const { formType } = inquiry
+  const payload = buildInquiryPayload(inquiry)
 
   const headers: Record<string, string> = { 'Content-Type': 'application/json', Accept: 'application/json' }
   const secret = process.env.INQUIRY_WEBHOOK_SECRET

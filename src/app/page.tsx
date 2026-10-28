@@ -22,6 +22,7 @@ import { pageMetadata } from '@/lib/metadata'
  */
 
 export const metadata = pageMetadata({
+  image: 'home',
   title: `${site.name} · Real athletes. Real content. Real fit.`,
   absoluteTitle: true,
   description: site.description,
@@ -33,7 +34,7 @@ const organizationJsonLd = {
   '@type': 'Organization',
   name: site.name,
   url: site.url,
-  logo: `${site.url}/apple-icon`,
+  logo: `${site.url}/apple-touch-icon.png`,
   description: site.description,
   ...(site.contact.email ? { email: site.contact.email } : {}),
   ...(site.social.length ? { sameAs: site.social.map((s) => s.href) } : {}),

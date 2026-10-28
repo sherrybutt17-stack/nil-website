@@ -2,9 +2,16 @@
 
 import { useCallback, useMemo, useState } from 'react'
 import type { z } from 'zod'
-import { toFieldErrors, type FieldErrors, type FormType } from '@/lib/inquiry-schema'
+import { buildInquiryPayload } from '@/lib/inquiry-payload'
+import { toFieldErrors, type FieldErrors, type FormType, type Inquiry } from '@/lib/inquiry-schema'
 
 export type SubmitStatus = 'idle' | 'submitting' | 'success' | 'not_configured' | 'error'
+
+// Where submissions go. A form service URL (NEXT_PUBLIC_INQUIRY_ENDPOINT) is posted to
+// directly from the browser; static hosting needs one. Otherwise this site's own
+// /api/inquiries route is used, which a static export doesn't include.
+const DIRECT_ENDPOINT = process.env.NEXT_PUBLIC_INQUIRY_ENDPOINT
+const HAS_API_ROUTE = process.env.NEXT_PUBLIC_STATIC_EXPORT !== 'true'
 
 type BaseValues = { formType: FormType }
 
@@ -14,7 +21,7 @@ type BaseValues = { formType: FormType }
  * - Errors show after a field is blurred with content, and for every field
  *   once the visitor has tried to submit.
  * - On a failed submit, focus moves to the first invalid control.
- * - `success` is only set when /api/inquiries confirms delivery.
+ * - `success` is only set when the endpoint confirms delivery.
  */
 export function useInquiryForm<V extends BaseValues>(schema: z.ZodType, initial: V) {
   const [values, setValues] = useState<V>(initial)
@@ -83,6 +90,26 @@ export function useInquiryForm<V extends BaseValues>(schema: z.ZodType, initial:
     }
 
     setSummaryKeys([])
+
+    if (DIRECT_ENDPOINT) {
+      // Only bots fill the hidden field; skip sending without telling them.
+      if (honeypot.trim()) return setStatus('success')
+      setStatus('submitting')
+      try {
+        const response = await fetch(DIRECT_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(buildInquiryPayload(result.data as Inquiry)),
+        })
+        setStatus(response.ok ? 'success' : 'error')
+      } catch {
+        setStatus('error')
+      }
+      return
+    }
+
+    if (!HAS_API_ROUTE) return setStatus('not_configured')
+
     setStatus('submitting')
     try {
       const response = await fetch('/api/inquiries', {

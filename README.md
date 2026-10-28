@@ -68,7 +68,7 @@ Nothing below has been invented. Each of these shows on the site as a dashed `[p
 | Consent wording on each form, and the minors note | `src/content/site.ts` → `legal` (have counsel review it, then bump `legal.version`) |
 | Privacy policy | `src/app/privacy/page.tsx` (it is `noindex` and left out of the sitemap until replaced) |
 | "Not legal advice" note on the athletes page | `src/app/athletes/page.tsx` (`TODO(placeholder)`) |
-| Production domain | `NEXT_PUBLIC_SITE_URL` env var |
+| Production domain | `NEXT_PUBLIC_SITE_URL` env var (set automatically for GitHub Pages) |
 | Form delivery | `INQUIRY_WEBHOOK_URL` env var (see below) |
 
 The site has no testimonials, client logos, athlete names, deal results or statistics. Add them only once they are real and you have permission to use them.
@@ -164,6 +164,30 @@ Set `INQUIRY_WEBHOOK_URL` to a test endpoint, such as a request-bin URL or a loc
 To put both colour versions online, create two Vercel projects from the same repository. Set `NEXT_PUBLIC_SITE_VARIANT=flare` on one and `NEXT_PUBLIC_SITE_VARIANT=night` on the other, and give each its own `NEXT_PUBLIC_SITE_URL`.
 
 Any host that runs `next start` on Node 20.9+ also works (Netlify, Render, Railway, a VPS). The form API needs a server, so a static export is not supported.
+
+## GitHub Pages (live preview of both versions)
+
+Every push to `main` runs `.github/workflows/pages.yml`. The workflow type-checks the code, then builds both colour versions as static files with `scripts/build-pages.mjs`, and publishes them:
+
+| Version | URL |
+|---|---|
+| Flare & Ultra | https://sherrybutt17-stack.github.io/nil-website/ |
+| Night Game | https://sherrybutt17-stack.github.io/nil-website/night/ |
+
+To set it up once, open GitHub → **Settings → Pages** and set **Source** to **GitHub Actions**.
+
+GitHub Pages only serves static files, so the Pages build differs in a few ways:
+
+- **Forms.** There is no `/api/inquiries` route. To receive submissions, create a form endpoint with a service that accepts JSON POSTs from the browser, such as Formspree or Basin. Then add its URL as a repository variable named `INQUIRY_ENDPOINT` (Settings → Secrets and variables → Actions → Variables) and push again. Until then, the forms honestly tell visitors their details were not sent.
+- **No custom security headers.** For the full version, including the server-side webhook and its secret, deploy to a Node host (see "Deploying" below).
+
+To try the Pages build locally:
+
+```bash
+PAGES_ORIGIN=http://localhost:8080 PAGES_BASE=/nil-website node scripts/build-pages.mjs
+```
+
+The output goes to `pages-dist/`. Serve it so that it appears under `/nil-website/`.
 
 ## How it's built
 

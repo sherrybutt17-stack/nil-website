@@ -16,6 +16,7 @@ import { ctas } from '@/content/site'
 import { pageMetadata } from '@/lib/metadata'
 
 export const metadata = pageMetadata({
+  image: 'agencies',
   title: 'For Agencies',
   description:
     'Tell NIL what your campaign needs. Our team reviews your request and proposes student athletes and sports creators from our private database who fit your goals, sport and audience.',

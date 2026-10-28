@@ -37,6 +37,11 @@ export const metadata: Metadata = {
   },
   twitter: { card: 'summary_large_image' },
   formatDetection: { telephone: false, email: false, address: false },
+  // Absolute URLs so the base path (static hosting) is always included.
+  icons: {
+    icon: [{ url: `${site.url}/favicon.png`, type: 'image/png', sizes: '64x64' }],
+    apple: [{ url: `${site.url}/apple-touch-icon.png`, sizes: '180x180' }],
+  },
 }
 
 export const viewport: Viewport = {

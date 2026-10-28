@@ -8,6 +8,7 @@ import { ctas, site } from '@/content/site'
 import { pageMetadata } from '@/lib/metadata'
 
 export const metadata = pageMetadata({
+  image: 'contact',
   title: 'Contact',
   description:
     'Questions about NIL, media requests or anything else? Send the NIL team a message. Athletes and agencies ready to sign up can use their dedicated forms.',
