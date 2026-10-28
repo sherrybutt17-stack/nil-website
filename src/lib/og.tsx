@@ -1,6 +1,7 @@
 import { readFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { ImageResponse } from 'next/og'
+import { site } from '@/content/site'
 import { brandColors } from '@/content/variant'
 
 /* Shared renderer for the Open Graph images. Fonts are OFL-licensed (see src/assets/fonts/OFL.txt). */
@@ -50,7 +51,7 @@ export async function renderOg({ eyebrow, title, accent }: OgInput) {
             <path d="M0 0h20L8 32H0z" fill={colors.flare} />
             <path d="M24 0h8v32H12z" fill={colors.ultra} />
           </svg>
-          <div style={{ fontFamily: 'Display', fontSize: 64, lineHeight: 1, letterSpacing: 2 }}>NIL</div>
+          <div style={{ fontFamily: 'Display', fontSize: 64, lineHeight: 1, letterSpacing: 2, textTransform: 'uppercase' }}>{site.name}</div>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <div

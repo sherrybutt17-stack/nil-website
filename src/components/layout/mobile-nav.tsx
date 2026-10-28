@@ -27,7 +27,7 @@ export function MobileNav() {
       <SheetContent side="right" className="gap-0 p-6">
         <SheetTitle className="sr-only">Menu</SheetTitle>
         <SheetDescription className="sr-only">Site navigation and signup links</SheetDescription>
-        <Link href="/" onClick={close} className="w-fit" aria-label="NIL home">
+        <Link href="/" onClick={close} className="w-fit">
           <Logo />
         </Link>
         <nav aria-label="Mobile" className="mt-10">

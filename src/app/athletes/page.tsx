@@ -20,7 +20,7 @@ export const metadata = pageMetadata({
   image: 'athletes',
   title: 'For Athletes',
   description:
-    'Student athletes and sports creators: apply once, get your profile reviewed by the NIL team, and be considered for agency campaigns that fit your sport, audience and style.',
+    'Student athletes and sports creators: apply once, get your profile reviewed by the Real NIL Agency team, and be considered for agency campaigns that fit your sport, audience and style.',
   path: '/athletes',
 })
 
@@ -69,7 +69,7 @@ const steps: Step[] = [
   },
   {
     title: 'Join the database',
-    body: 'Your profile is kept in NIL’s private athlete database. It isn’t published on this site or shared publicly.',
+    body: 'Your profile is kept in our private athlete database. It isn’t published on this site or shared publicly.',
   },
   {
     title: 'Get matched',
@@ -108,7 +108,7 @@ export default function AthletesPage() {
             Your game has <Accent>value</Accent> off the field.
           </>
         }
-        intro="Apply once with your sport, school or team, and social profiles. Our team reviews your profile, keeps it in NIL’s private athlete database, and considers you for agency campaigns that fit who you are."
+        intro="Apply once with your sport, school or team, and social profiles. Our team reviews your profile, keeps it in our private athlete database, and considers you for agency campaigns that fit who you are."
         actions={
           <>
             <Button asChild variant="ink" size="lg">
@@ -160,7 +160,7 @@ export default function AthletesPage() {
           <Reveal className="lg:col-span-4">
             <SectionHeading
               id="athlete-benefits-title"
-              eyebrow="What NIL brings"
+              eyebrow="What we bring"
               eyebrowClassName="text-flare-deep"
               title={
                 <>
@@ -220,7 +220,7 @@ export default function AthletesPage() {
             <div className="lg:sticky lg:top-28">
               <p className="eyebrow text-flare-deep">Athlete signup</p>
               <h2 id="athlete-signup-title" className="display mt-4 text-[3.25rem] @sm:text-6xl @md:text-7xl">
-                Join NIL.
+                Join Real NIL Agency.
               </h2>
               <p className="mt-5 text-lg leading-relaxed text-smoke">
                 Tell us about your sport and your content. Only your name, email, sport and one social profile are

@@ -5,7 +5,7 @@ import * as m from 'motion/react-m'
 
 /*
  * The matching process drawn as a coach's play: athletes (O) and agencies (X)
- * run routes into NIL's review, and one route carries through to activation.
+ * run routes into the agency's review, and one route carries through to activation.
  */
 
 const athleteRoutes = ['M96 96 C 170 96, 220 150, 282 196', 'M78 214 C 160 214, 220 214, 280 214', 'M96 332 C 170 332, 220 280, 282 232']
@@ -31,7 +31,7 @@ export function Playbook({ className }: { className?: string }) {
       className={className}
     >
       <title id="playbook-title">
-        Diagram: athletes and agencies each sign up, meet at NIL for review and matching, then move together to activation.
+        Diagram: athletes and agencies each sign up, meet at Real NIL Agency for review and matching, then move together to activation.
       </title>
 
       {/* Field */}
@@ -77,7 +77,7 @@ export function Playbook({ className }: { className?: string }) {
         AGENCIES · 01
       </text>
 
-      {/* NIL hub */}
+      {/* Agency hub */}
       <circle cx="320" cy="214" r="40" className="fill-chalk" />
       <g transform="translate(302 196) scale(1.125)">
         <path d="M0 0h20L8 32H0z" className="fill-flare" />

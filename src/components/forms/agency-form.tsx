@@ -35,7 +35,7 @@ export function AgencyForm() {
         body: (
           <>
             <p>
-              Thanks{values.contactName ? `, ${values.contactName.split(' ')[0]}` : ''}. Your request is with the NIL
+              Thanks{values.contactName ? `, ${values.contactName.split(' ')[0]}` : ''}. Your request is with the Real NIL Agency
               team.
             </p>
             <p>

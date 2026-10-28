@@ -16,8 +16,8 @@ import { pageMetadata } from '@/lib/metadata'
 
 /*
  * Campaign-led homepage. Section order and tone follow a marketplace-style NIL
- * site the client referenced; every word is original and describes NIL's
- * actual, human-reviewed process. Partner logos and campaign posts come from
+ * site the client referenced; every word is original and describes the
+ * agency's actual, human-reviewed process. Partner logos and campaign posts come from
  * src/content/proof.ts and are never invented.
  */
 
@@ -41,7 +41,7 @@ const organizationJsonLd = {
 }
 
 const heroPoints = [
-  'Athletes hand-picked from NIL’s private database',
+  'Athletes hand-picked from our private database',
   'Matched on sport, audience and style, not follower count alone',
   'Content support for Instagram Reels and short-form video',
   'A real person reviewing every request',
@@ -136,7 +136,7 @@ export default function HomePage() {
               </span>
             </h1>
             <p className="mt-8 max-w-xl text-lg leading-relaxed text-chalk/85 text-pretty sm:text-xl">
-              NIL pairs agencies with student athletes and sports creators, hand-picked by our team, and helps produce
+              We pair agencies with student athletes and sports creators, hand-picked by our team, and help produce
               the short-form content that carries your campaign.
             </p>
             <ul className="mt-7 grid gap-2.5 sm:grid-cols-2">
@@ -212,14 +212,14 @@ export default function HomePage() {
       <section aria-labelledby="b-mission" className="overflow-hidden py-20 sm:py-28">
         <div className="container-x grid items-center gap-14 lg:grid-cols-12">
           <Reveal className="lg:col-span-7">
-            <p className="eyebrow text-flare-deep">Why NIL</p>
+            <p className="eyebrow text-flare-deep">Why Real NIL Agency</p>
             <h2 id="b-mission" className="mt-5 text-4xl leading-[1.1] font-medium tracking-tight sm:text-5xl lg:text-6xl">
               where <span className="display text-[1.15em]">game</span> meets{' '}
               <span className="display text-[1.15em] text-ultra">brand</span>, and{' '}
               <span className="display text-[1.15em] text-flare-deep">people</span> make the call.
             </h2>
             <p className="mt-7 max-w-xl text-lg leading-relaxed text-smoke">
-              NIL connects student athletes and sports creators with agencies running brand campaigns. Our team reviews
+              Real NIL Agency connects student athletes and sports creators with agencies running brand campaigns. Our team reviews
               every athlete profile and every agency request, so every introduction has a reason behind it.
             </p>
             <div className="mt-8 flex flex-col gap-3 xs:flex-row">
@@ -276,7 +276,7 @@ export default function HomePage() {
                     <Link href={ctas.agency.href}>{ctas.agency.label}</Link>
                   </Button>
                   <Link href="/agencies" className="font-semibold underline decoration-2 underline-offset-4">
-                    How NIL works for agencies
+                    How it works for agencies
                   </Link>
                 </div>
               </article>
@@ -300,7 +300,7 @@ export default function HomePage() {
                     <Link href={ctas.athlete.href}>{ctas.athlete.label}</Link>
                   </Button>
                   <Link href="/athletes" className="font-semibold underline decoration-2 underline-offset-4">
-                    How NIL works for athletes
+                    How it works for athletes
                   </Link>
                 </div>
               </article>

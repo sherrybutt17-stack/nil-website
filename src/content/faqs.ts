@@ -1,14 +1,14 @@
 /**
  * FAQ content. Answers describe the process only — no pricing, fees,
- * guaranteed outcomes or timelines. Add those once NIL confirms them.
+ * guaranteed outcomes or timelines. Add those once the agency confirms them.
  */
 
 export type Faq = { q: string; a: string }
 
 export const homeFaqs: Faq[] = [
   {
-    q: 'What is NIL?',
-    a: 'NIL is a sports partnership team. We connect student athletes and sports-focused social media creators with agencies running brand campaigns, and we review and match both sides by hand.',
+    q: 'What is Real NIL Agency?',
+    a: 'Real NIL Agency is a sports partnership team. We connect student athletes and sports-focused social media creators with agencies running brand campaigns, and we review and match both sides by hand.',
   },
   {
     q: 'Who should use the athlete form?',
@@ -28,7 +28,7 @@ export const homeFaqs: Faq[] = [
   },
   {
     q: 'Is the information I submit public?',
-    a: 'No. Form submissions go to the NIL team only and are never published on this website. Our privacy policy explains how information is handled.',
+    a: 'No. Form submissions go to our team only and are never published on this website. Our privacy policy explains how information is handled.',
   },
 ]
 
@@ -39,14 +39,14 @@ export const agencyFaqs: Faq[] = [
   },
   {
     q: 'Where do the athletes come from?',
-    a: 'From NIL’s private athlete database: student athletes and sports creators who applied to NIL directly and whose profiles our team has reviewed.',
+    a: 'From our private athlete database: student athletes and sports creators who applied to us directly and whose profiles our team has reviewed.',
   },
   {
     q: 'Is an athlete guaranteed to say yes?',
     a: 'No. Athletes decide which partnerships they accept, and availability depends on their season and schedule. We’ll tell you plainly when a fit isn’t available.',
   },
   {
-    q: 'Can NIL help with campaign content?',
+    q: 'Can Real NIL Agency help with campaign content?',
     a: 'Where a campaign calls for it, we can support athlete branding and short-form social content such as Instagram Reels. Tell us what you need in your request.',
   },
   {
@@ -62,7 +62,7 @@ export const athleteFaqs: Faq[] = [
   },
   {
     q: 'Is my profile public?',
-    a: 'No. Your submission goes to the NIL team and is kept in our private athlete database. It isn’t published on this website or shared publicly.',
+    a: 'No. Your submission goes to our team and is kept in our private athlete database. It isn’t published on this website or shared publicly.',
   },
   {
     q: 'Am I guaranteed a deal?',

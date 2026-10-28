@@ -1,4 +1,4 @@
-# CLAUDE.md: NIL website
+# CLAUDE.md: Real NIL Agency website
 
 This is the working guide and build plan for the NIL marketing site. Keep it current when decisions change.
 
@@ -221,6 +221,17 @@ src/lib/{inquiry-schema,deliver,metadata,og,utils}.ts(x)
 - **Icons and share images** are real `.png` route handlers: `favicon.png`, `apple-touch-icon.png` and `og/[image]` (content in `src/lib/og-images.ts`). They are referenced with absolute URLs built from `site.url`.
   - The `icon.tsx` and `opengraph-image.tsx` conventions were dropped. Their `<link>` tags lacked `basePath`, and their files had no extension, so Pages served them with the wrong content type.
   - Metadata routes declare `dynamic = 'force-static'`.
+
+## Rename to Real NIL Agency (2026-10-28)
+
+- **Name.** The user named the company **Real NIL Agency**. It is set in `site.name`, with `site.shortName: 'Real NIL'` used in the manifest.
+  - Copy uses the full name where the company is named, and "our team" or "our private database" where repeating it would read badly.
+  - "NIL" stays wherever it means the concept: "NIL rules", "Sports NIL partnerships".
+  - The consent wording changed, so `legal.version` is now `placeholder-2026-10-r2`.
+- **Logo.** A stacked "REAL NIL / AGENCY" wordmark next to the mark.
+  - Logo links use the wordmark text as their accessible name, with no `aria-label`. An `aria-label` failed axe `label-content-name-mismatch`, and the `{' '}` between the two lines keeps the name "Real NIL Agency".
+  - The OG images print `site.name` in uppercase. The footer's giant wordmark reads "Real NIL".
+- **Checks after the rename.** On both Pages builds, axe found no violations and the responsive sweep was clean, including header fit at 320 px and 1024 px.
 
 ## Verification results (2026-10-28)
 

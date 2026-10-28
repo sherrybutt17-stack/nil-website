@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og'
 import { brandColors } from '@/content/variant'
 
-/** The NIL mark on an ink square, rendered to PNG for the favicon and Apple touch icon. */
+/** The Real NIL Agency mark on an ink square, rendered to PNG for the favicon and Apple touch icon. */
 export function renderBrandMark(size: number, radius: number) {
   const mark = Math.round(size * 0.58)
   return new ImageResponse(

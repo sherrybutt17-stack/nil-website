@@ -9,7 +9,7 @@ export function SiteHeader() {
   return (
     <header className="surface-ink sticky top-0 z-40 border-b border-chalk/10">
       <div className="container-x flex h-(--header-h) items-center justify-between gap-6">
-        <Link href="/" aria-label="NIL home" className="shrink-0">
+        <Link href="/" className="shrink-0">
           <Logo />
         </Link>
         <nav aria-label="Main" className="hidden lg:block">

@@ -51,7 +51,7 @@ export function AthleteForm() {
         body: (
           <>
             <p>
-              Thanks{values.fullName ? `, ${values.fullName.split(' ')[0]}` : ''}. Your profile is with the NIL team.
+              Thanks{values.fullName ? `, ${values.fullName.split(' ')[0]}` : ''}. Your profile is with the Real NIL Agency team.
             </p>
             <p>
               A person on our team will review it. When an agency campaign fits you, we’ll reach out at{' '}

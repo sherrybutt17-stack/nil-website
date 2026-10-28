@@ -23,7 +23,7 @@ const columns = [
     ],
   },
   {
-    title: 'NIL',
+    title: 'Company',
     links: [
       { href: '/contact', label: 'Contact' },
       { href: legal.privacyPath, label: 'Privacy policy' },
@@ -39,7 +39,7 @@ export function SiteFooter() {
       <div className="container-x pt-16 pb-10 sm:pt-20">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <Link href="/" aria-label="NIL home" className="inline-block">
+            <Link href="/" className="inline-block">
               <Logo />
             </Link>
             <p className="mt-5 max-w-sm text-base leading-relaxed text-chalk/75">
@@ -116,7 +116,7 @@ export function SiteFooter() {
       {/* Decorative wordmark, drawn via CSS content so it isn't read or contrast-checked as text. */}
       <div
         aria-hidden="true"
-        className="display pointer-events-none -mb-[0.3em] text-center text-[22vw] leading-[0.8] text-chalk/[0.04] select-none before:content-['NIL']"
+        className="display pointer-events-none -mb-[0.3em] text-center text-[22vw] leading-[0.8] text-chalk/[0.04] select-none before:content-['Real_NIL']"
       />
     </footer>
   )

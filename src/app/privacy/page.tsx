@@ -4,7 +4,7 @@ import { ContactEmail } from '@/components/placeholder'
 import { site } from '@/content/site'
 
 /*
- * TODO(placeholder): replace this page with NIL's privacy policy, written or
+ * TODO(placeholder): replace this page with the agency's privacy policy, written or
  * reviewed by qualified counsel, before collecting real submissions.
  * It is excluded from the sitemap and marked noindex until then.
  */
@@ -41,7 +41,7 @@ export default function PrivacyPage() {
           <div className="space-y-2 text-base leading-relaxed">
             <p className="font-bold">This page is a placeholder.</p>
             <p>
-              NIL’s privacy policy hasn’t been published yet. It will replace this page once it has been prepared and
+              Real NIL Agency’s privacy policy hasn’t been published yet. It will replace this page once it has been prepared and
               reviewed. Until then, if you have questions about information you’ve submitted, contact us at{' '}
               <ContactEmail />.
             </p>

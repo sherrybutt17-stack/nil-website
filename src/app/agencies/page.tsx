@@ -19,7 +19,7 @@ export const metadata = pageMetadata({
   image: 'agencies',
   title: 'For Agencies',
   description:
-    'Tell NIL what your campaign needs. Our team reviews your request and proposes student athletes and sports creators from our private database who fit your goals, sport and audience.',
+    'Tell Real NIL Agency what your campaign needs. Our team reviews your request and proposes student athletes and sports creators from our private database who fit your goals, sport and audience.',
   path: '/agencies',
 })
 
@@ -36,8 +36,8 @@ const benefits: Benefit[] = [
   },
   {
     icon: Database,
-    title: 'Athletes who applied to NIL',
-    body: 'Proposals come from NIL’s private athlete database: athletes and creators who signed up directly and were reviewed by our team.',
+    title: 'Athletes who applied to us',
+    body: 'Proposals come from our private athlete database: athletes and creators who signed up directly and were reviewed by our team.',
   },
   {
     icon: Clapperboard,
@@ -57,7 +57,7 @@ const steps: Step[] = [
   },
   {
     title: 'We shortlist',
-    body: 'We search NIL’s private athlete database and propose athletes who suit the campaign.',
+    body: 'We search our private athlete database and propose athletes who suit the campaign.',
   },
   {
     title: 'You choose',
@@ -95,7 +95,7 @@ export default function AgenciesPage() {
             Athletes who <Accent>fit</Accent> the brief.
           </>
         }
-        intro="Tell us what your campaign needs. Our team reviews your request, searches NIL’s private athlete database, and proposes student athletes and sports creators who suit your goals, sport and audience."
+        intro="Tell us what your campaign needs. Our team reviews your request, searches our private athlete database, and proposes student athletes and sports creators who suit your goals, sport and audience."
         actions={
           <>
             <Button asChild variant="chalk" size="lg">
@@ -126,7 +126,7 @@ export default function AgenciesPage() {
               eyebrow="What you get"
               eyebrowClassName="text-ultra"
               title="Less searching. Better fits."
-              intro="NIL does the scouting so your team can focus on the campaign."
+              intro="We do the scouting so your team can focus on the campaign."
             />
           </Reveal>
           <BenefitGrid items={benefits} badgeClassName="bg-ultra text-white" className="lg:col-span-8" />
@@ -194,7 +194,7 @@ export default function AgenciesPage() {
             <div className="lg:sticky lg:top-28">
               <p className="eyebrow text-ultra">Agency signup</p>
               <h2 id="agency-signup-title" className="display mt-4 text-[3.25rem] @sm:text-6xl @md:text-7xl">
-                Partner with NIL.
+                Partner with Real NIL Agency.
               </h2>
               <p className="mt-5 text-lg leading-relaxed text-smoke">
                 A few details about your agency and campaign. It’s a starting point, not a contract.

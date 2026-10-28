@@ -32,7 +32,7 @@ export function ContactForm() {
         title: 'Message sent.',
         body: (
           <p>
-            Thanks for getting in touch. The NIL team will reply to <strong>{values.email}</strong>
+            Thanks for getting in touch. The Real NIL Agency team will reply to <strong>{values.email}</strong>
             {site.contact.responseTime ? `, usually ${site.contact.responseTime}` : ''}.
           </p>
         ),

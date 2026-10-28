@@ -1,12 +1,14 @@
-# NIL website
+# Real NIL Agency website
 
-The marketing site for **NIL**, which connects student athletes and sports creators with agencies. NIL reviews and matches both sides by hand.
+The marketing site for **Real NIL Agency**, which connects student athletes and sports creators with agencies. The agency reviews and matches both sides by hand.
+
+The company name is set once in `src/content/site.ts` (`site.name`, plus `site.shortName` for tight spaces). The stacked header wordmark is in `src/components/graphics/logo.tsx`, and a few sentences name the agency directly.
 
 The site has four public routes:
 
 | Route | What it does |
 |---|---|
-| `/` | Home, campaign-led. A role picker, the hero ("Real athletes. Real content. Real fit."), partner logos, the mission, what NIL does for each side, why brands work with athletes, campaign work, FAQs and calls to action |
+| `/` | Home, campaign-led. A role picker, the hero ("Real athletes. Real content. Real fit."), partner logos, the mission, what the agency does for each side, why brands work with athletes, campaign work, FAQs and calls to action |
 | `/athletes` | For Athletes. Onboarding, profile review and content support, plus the **athlete signup form** (`#athlete-signup`) |
 | `/agencies` | For Agencies. The request and matching process, plus the **agency signup form** (`#agency-signup`) |
 | `/contact` | General inquiry form and contact details |

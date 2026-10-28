@@ -11,7 +11,7 @@ export const metadata = pageMetadata({
   image: 'contact',
   title: 'Contact',
   description:
-    'Questions about NIL, media requests or anything else? Send the NIL team a message. Athletes and agencies ready to sign up can use their dedicated forms.',
+    'Questions about Real NIL Agency, media requests or anything else? Send our team a message. Athletes and agencies ready to sign up can use their dedicated forms.',
   path: '/contact',
 })
 
@@ -37,8 +37,8 @@ export default function ContactPage() {
         id="contact"
         surface="surface-ink"
         eyebrow="Contact"
-        title="Talk to the NIL team."
-        intro="Questions about how NIL works, media requests, or anything else — send us a message. If you’re ready to sign up, the dedicated forms are the fastest way in."
+        title="Talk to our team."
+        intro="Questions about how Real NIL Agency works, media requests, or anything else — send us a message. If you’re ready to sign up, the dedicated forms are the fastest way in."
         actions={routes.map((route) => (
           <Link
             key={route.href}

@@ -2,7 +2,7 @@
 @import "tw-animate-css";
 
 /* ---------------------------------------------------------------------------
-   NIL design tokens
+   Real NIL Agency design tokens
    Flare = athletes, Ultra = agencies, on Ink and Chalk.
    Contrast (WCAG): ink/chalk 16.9, flare/ink 6.2, ultra/chalk 6.2,
    white/ultra 7.0, flare-deep/chalk 4.8, smoke/chalk 6.6.
@@ -208,7 +208,7 @@
   text-wrap: pretty;
 }
 
-/* Visible marker for content NIL still needs to supply. */
+/* Visible marker for content the agency still needs to supply. */
 @utility placeholder-chip {
   display: inline-flex;
   align-items: center;

@@ -11,7 +11,7 @@ const base = process.env.NEXT_PUBLIC_BASE_PATH || ''
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: `${site.name} · ${site.tagline}`,
-    short_name: site.name,
+    short_name: site.shortName,
     description: site.description,
     start_url: `${base}/`,
     display: 'browser',

@@ -34,7 +34,7 @@ const steps: Step[] = [
   },
   {
     title: 'We review',
-    body: 'Our team reads every athlete profile and every agency request. Athlete profiles are kept in NIL’s private database.',
+    body: 'Our team reads every athlete profile and every agency request. Athlete profiles are kept in our private database.',
   },
   {
     title: 'We match',
@@ -55,7 +55,7 @@ const commitments: Benefit[] = [
   {
     icon: EyeOff,
     title: 'Your details stay private',
-    body: 'Submissions go to the NIL team only. We never publish athlete profiles or agency requests on this site.',
+    body: 'Submissions go to our team only. We never publish athlete profiles or agency requests on this site.',
   },
   {
     icon: Handshake,
@@ -78,7 +78,7 @@ const athletePoints = [
 
 const agencyPoints = [
   'Your request reviewed by our team',
-  'Athletes proposed from NIL’s private database',
+  'Athletes proposed from our private database',
   'Fit weighed over follower count',
   'Help with athlete content where you need it',
 ]
@@ -111,7 +111,7 @@ export default function OriginalHomePage() {
               You make the play.
             </h1>
             <p className="mt-8 max-w-xl text-lg leading-relaxed text-chalk/85 text-pretty sm:text-xl">
-              NIL connects student athletes and sports creators with agencies running brand campaigns. Our team reviews
+              Real NIL Agency connects student athletes and sports creators with agencies running brand campaigns. Our team reviews
               every profile and every request, then proposes partnerships that fit both sides.
             </p>
             <div className="mt-10 flex flex-col gap-3 xs:flex-row xs:flex-wrap">
@@ -152,7 +152,7 @@ export default function OriginalHomePage() {
                   Pick your <Accent>side.</Accent>
                 </>
               }
-              intro="NIL works with both sides of every partnership. Choose the path that fits you — each has its own signup and its own process."
+              intro="Real NIL Agency works with both sides of every partnership. Choose the path that fits you — each has its own signup and its own process."
             />
           </Reveal>
           <div className="mt-14 grid gap-4 md:grid-cols-2">
@@ -215,7 +215,7 @@ export default function OriginalHomePage() {
             <Reveal className="lg:col-span-5">
               <SectionHeading
                 id="process-title"
-                eyebrow="How NIL works"
+                eyebrow="How it works"
                 eyebrowClassName="text-flare"
                 title={
                   <>
@@ -275,7 +275,7 @@ export default function OriginalHomePage() {
                     Content that <Accent>lands.</Accent>
                   </>
                 }
-                intro="A strong match still needs strong content. Where a campaign calls for it, NIL can help athletes sharpen their personal brand and create short-form social content like Instagram Reels."
+                intro="A strong match still needs strong content. Where a campaign calls for it, Real NIL Agency can help athletes sharpen their personal brand and create short-form social content like Instagram Reels."
               />
             </Reveal>
             <Reveal delay={0.1}>
