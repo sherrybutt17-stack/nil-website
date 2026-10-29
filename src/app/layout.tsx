@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import { Archivo, Instrument_Serif } from 'next/font/google'
+import { SiteChrome } from '@/components/layout/site-chrome'
 import { SiteFooter } from '@/components/layout/site-footer'
 import { SiteHeader } from '@/components/layout/site-header'
 import { MotionProvider } from '@/components/motion/motion-provider'
@@ -68,11 +69,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           Skip to content
         </a>
         <MotionProvider>
-          <SiteHeader />
-          <main id="main" tabIndex={-1} className="flex-1 outline-none">
+          <SiteChrome header={<SiteHeader />} footer={<SiteFooter />}>
             {children}
-          </main>
-          <SiteFooter />
+          </SiteChrome>
         </MotionProvider>
       </body>
     </html>
