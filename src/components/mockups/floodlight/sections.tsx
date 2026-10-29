@@ -17,7 +17,7 @@ import {
   whatWeDo,
 } from '@/content/home'
 import { sports } from '@/content/options'
-import { campaignPosts, partners, showEmptySlots } from '@/content/proof'
+import { campaignPosts, partners, showEmptySlots } from '@/content/sample'
 import { ctas, site } from '@/content/site'
 import { cn } from '@/lib/utils'
 import { LedRibbon, LowerThird, SpotPanel } from './interactive'
@@ -95,10 +95,10 @@ export function Partners() {
                 <li key={partner.name} className="grid h-24 place-items-center bg-ink px-4">
                   {partner.href ? (
                     <a href={partner.href} target="_blank" rel="noopener" className="grid h-full w-full place-items-center">
-                      <Image src={partner.logo} alt={partner.name} width={140} height={48} className="max-h-9 w-auto object-contain" />
+                      <Image src={partner.logo} alt={partner.name} width={140} height={48} className="max-h-9 w-auto max-w-full object-contain" />
                     </a>
                   ) : (
-                    <Image src={partner.logo} alt={partner.name} width={140} height={48} className="max-h-9 w-auto object-contain" />
+                    <Image src={partner.logo} alt={partner.name} width={140} height={48} className="max-h-9 w-auto max-w-full object-contain" />
                   )}
                 </li>
               ))
@@ -343,7 +343,7 @@ export function Commitments() {
               <span className="fl-dots text-[1.25rem] leading-none font-black tracking-[0.12em] text-flare uppercase [font-stretch:125%] sm:text-[2rem]">
                 {site.name}
               </span>
-              <span className="fl-label hidden items-center gap-5 text-chalk/60 sm:flex">
+              <span className="fl-label hidden items-center gap-5 text-chalk/70 sm:flex">
                 <span className="flex items-center gap-2">
                   <span className="size-2 rounded-full bg-flare shadow-[0_0_12px_var(--color-flare)]" />
                   Athletes

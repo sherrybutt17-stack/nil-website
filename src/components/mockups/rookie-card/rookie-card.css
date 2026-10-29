@@ -1,0 +1,748 @@
+/* ---------------------------------------------------------------------------
+   Concept D · Rookie Card
+   A collectibles house for athlete partnerships: cards are the colour objects,
+   held in clear acrylic "slabs" on a chalk ground under soft studio light.
+   Every rule is scoped to .concept-rookie (or .rookie-portal for the mobile
+   menu, which portals outside the root). Keyframes and properties carry an
+   rk- prefix. Colours come from tokens, so the Night palette recolours it.
+   Contrast: ink on chalk 16.9, flare-deep on chalk 4.8, ultra on chalk 6.2,
+   ink on flare 6.2, white on ultra 7.0, chalk on ink 16.9.
+--------------------------------------------------------------------------- */
+
+@layer components {
+  .concept-rookie {
+    --rk-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --rk-ease-soft: cubic-bezier(0.25, 0.25, 0, 1);
+    --rk-r-card: 0.875rem;
+    --rk-r-slab: 1.375rem;
+    --rk-hair: color-mix(in oklab, var(--color-ink) 14%, transparent);
+    --rk-shadow:
+      0 1px 1px color-mix(in oklab, var(--color-ink) 8%, transparent),
+      0 10px 20px -12px color-mix(in oklab, var(--color-ink) 22%, transparent),
+      0 40px 70px -40px color-mix(in oklab, var(--color-ink) 45%, transparent);
+    --focus: var(--color-ultra);
+    color: var(--color-ink);
+    /* Studio light: a soft, static falloff from the top of the page. */
+    background:
+      radial-gradient(120% 70rem at 50% -12rem, var(--color-paper) 0%, transparent 70%),
+      var(--color-chalk);
+  }
+
+  .concept-rookie ::selection {
+    background: var(--color-ink);
+    color: var(--color-chalk);
+  }
+
+  /* -------------------------------------------------------------------------
+     Type
+  ------------------------------------------------------------------------- */
+  .concept-rookie .rk-display,
+  .rookie-portal .rk-display {
+    font-weight: 800;
+    font-stretch: 120%;
+    text-transform: uppercase;
+    letter-spacing: -0.015em;
+    line-height: 0.95;
+    text-wrap: balance;
+  }
+
+  .concept-rookie .rk-label,
+  .rookie-portal .rk-label {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    font-stretch: 125%;
+    letter-spacing: 0.16em;
+    line-height: 1.25;
+    text-transform: uppercase;
+  }
+
+  .concept-rookie .rk-num {
+    font-weight: 900;
+    font-stretch: 62%;
+    line-height: 0.8;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+  }
+
+  .concept-rookie .rk-num--outline {
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 1.5px currentColor;
+  }
+
+  .concept-rookie .rk-h1 {
+    /* Sized by its column so the widest line always fits. */
+    font-size: clamp(2.05rem, 9.3cqi, 5.6rem);
+  }
+
+  .concept-rookie .rk-h2 {
+    font-size: clamp(1.9rem, 1.15rem + 2.6vw, 3.5rem);
+  }
+
+  .concept-rookie p,
+  .concept-rookie li {
+    text-wrap: pretty;
+  }
+
+  /* -------------------------------------------------------------------------
+     Buttons: plates with a glint that crosses on hover
+  ------------------------------------------------------------------------- */
+  .concept-rookie .rk-btn,
+  .rookie-portal .rk-btn {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    min-height: 3.25rem;
+    padding-inline: 1.375rem;
+    border-radius: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    font-stretch: 125%;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    touch-action: manipulation;
+    transition:
+      background-color 0.25s var(--rk-ease),
+      color 0.25s var(--rk-ease),
+      box-shadow 0.25s var(--rk-ease),
+      transform 0.25s var(--rk-ease);
+  }
+
+  .concept-rookie .rk-btn::after,
+  .rookie-portal .rk-btn::after {
+    content: '';
+    position: absolute;
+    inset: -20% auto -20% 0;
+    z-index: -1;
+    width: 45%;
+    background: linear-gradient(
+      100deg,
+      transparent 0%,
+      color-mix(in oklab, white 55%, transparent) 45%,
+      color-mix(in oklab, white 10%, transparent) 60%,
+      transparent 100%
+    );
+    transform: translate3d(-160%, 0, 0) skewX(-18deg);
+    transition: transform 0.9s var(--rk-ease);
+    pointer-events: none;
+  }
+
+  .concept-rookie .rk-btn:hover::after,
+  .concept-rookie .rk-btn:focus-visible::after {
+    transform: translate3d(330%, 0, 0) skewX(-18deg);
+  }
+
+  .concept-rookie .rk-btn:active {
+    transform: translateY(1px);
+  }
+
+  .concept-rookie .rk-btn svg {
+    transition: transform 0.3s var(--rk-ease);
+  }
+  .concept-rookie .rk-btn:hover svg {
+    transform: translateX(3px);
+  }
+
+  .concept-rookie .rk-btn--ink {
+    background: var(--color-ink);
+    color: var(--color-chalk);
+    box-shadow: inset 0 1px 0 color-mix(in oklab, white 14%, transparent);
+  }
+  .concept-rookie .rk-btn--ink:hover {
+    background: var(--color-ink-raised);
+  }
+
+  .concept-rookie .rk-btn--ultra,
+  .rookie-portal .rk-btn--ultra {
+    background: var(--color-ultra);
+    color: white;
+    box-shadow: inset 0 1px 0 color-mix(in oklab, white 22%, transparent);
+  }
+  .concept-rookie .rk-btn--ultra:hover {
+    background: var(--color-ultra-hover);
+  }
+
+  .concept-rookie .rk-btn--flare,
+  .rookie-portal .rk-btn--flare {
+    background: var(--color-flare);
+    color: var(--color-ink);
+    box-shadow: inset 0 1px 0 color-mix(in oklab, white 30%, transparent);
+  }
+  .concept-rookie .rk-btn--flare:hover {
+    background: var(--color-flare-hover);
+  }
+
+  .concept-rookie .rk-btn--outline {
+    color: var(--color-ink);
+    box-shadow: inset 0 0 0 1.5px color-mix(in oklab, var(--color-ink) 28%, transparent);
+  }
+  .concept-rookie .rk-btn--outline::after {
+    background: linear-gradient(100deg, transparent, color-mix(in oklab, var(--color-ink) 8%, transparent), transparent);
+  }
+  .concept-rookie .rk-btn--outline:hover {
+    box-shadow: inset 0 0 0 1.5px var(--color-ink);
+  }
+
+  .concept-rookie .rk-btn--chalk {
+    background: var(--color-chalk);
+    color: var(--color-ink);
+  }
+  .concept-rookie .rk-btn--chalk:hover {
+    background: var(--color-paper);
+  }
+
+  .concept-rookie .rk-btn--ghost-light {
+    color: var(--color-chalk);
+    box-shadow: inset 0 0 0 1.5px color-mix(in oklab, var(--color-chalk) 35%, transparent);
+  }
+  .concept-rookie .rk-btn--ghost-light:hover {
+    box-shadow: inset 0 0 0 1.5px var(--color-chalk);
+  }
+
+  /* Text links whose underline redraws on hover. */
+  .concept-rookie .rk-link,
+  .rookie-portal .rk-link {
+    background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1.5px no-repeat;
+    padding-bottom: 0.15em;
+    transition: background-size 0.45s var(--rk-ease);
+  }
+  .concept-rookie .rk-link:hover {
+    background-size: 0 1.5px;
+    background-position: 100% 100%;
+  }
+
+  /* -------------------------------------------------------------------------
+     Slab: the clear acrylic case a graded card sits in
+  ------------------------------------------------------------------------- */
+  .concept-rookie .rk-slab {
+    --rk-slab-pad: clamp(0.6rem, 0.45rem + 0.6vw, 0.95rem);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--rk-slab-pad);
+    padding: var(--rk-slab-pad);
+    border-radius: var(--rk-r-slab);
+    background:
+      linear-gradient(
+        160deg,
+        color-mix(in oklab, white 70%, transparent) 0%,
+        color-mix(in oklab, white 18%, transparent) 38%,
+        color-mix(in oklab, white 4%, transparent) 62%,
+        color-mix(in oklab, white 30%, transparent) 100%
+      ),
+      color-mix(in oklab, var(--color-paper) 55%, transparent);
+    box-shadow:
+      inset 0 0 0 1px color-mix(in oklab, var(--color-ink) 13%, transparent),
+      inset 0 0 0 2.5px color-mix(in oklab, white 75%, transparent),
+      inset 0 -10px 18px -14px color-mix(in oklab, var(--color-ink) 22%, transparent),
+      var(--rk-shadow);
+  }
+
+  /* A long reflection across the acrylic. */
+  .concept-rookie .rk-slab::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+      118deg,
+      transparent 30%,
+      color-mix(in oklab, white 42%, transparent) 41%,
+      transparent 46%,
+      transparent 54%,
+      color-mix(in oklab, white 18%, transparent) 58%,
+      transparent 62%
+    );
+    pointer-events: none;
+    mix-blend-mode: soft-light;
+  }
+
+  .concept-rookie .rk-slab__label {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    min-height: 2.75rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: calc(var(--rk-r-slab) - var(--rk-slab-pad));
+    background: var(--color-paper);
+    box-shadow:
+      inset 0 0 0 1px color-mix(in oklab, var(--color-ink) 16%, transparent),
+      0 1px 0 color-mix(in oklab, white 80%, transparent);
+  }
+
+  /* A barcode-like strip of hairlines: decorative, not data. */
+  .concept-rookie .rk-bars {
+    width: 3.25rem;
+    height: 1.125rem;
+    flex: none;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--color-ink) 0 1px,
+      transparent 1px 3px,
+      var(--color-ink) 3px 5px,
+      transparent 5px 6px,
+      var(--color-ink) 6px 7px,
+      transparent 7px 10px
+    );
+    opacity: 0.7;
+  }
+
+  /* Foil sweep on label strips, played once when they enter view (sweeps.tsx). */
+  .concept-rookie [data-rk-sweep]::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      transparent 20%,
+      color-mix(in oklab, var(--color-flare) 30%, transparent) 38%,
+      color-mix(in oklab, white 85%, transparent) 46%,
+      color-mix(in oklab, var(--color-ultra) 28%, transparent) 54%,
+      transparent 72%
+    );
+    transform: translate3d(-110%, 0, 0);
+    mix-blend-mode: multiply;
+    pointer-events: none;
+  }
+  .concept-rookie [data-rk-sweep][data-lit]::after {
+    animation: rk-sweep 1.6s var(--rk-ease-soft) both;
+  }
+
+  @keyframes rk-sweep {
+    to {
+      transform: translate3d(110%, 0, 0);
+    }
+  }
+
+  /* -------------------------------------------------------------------------
+     Cards
+  ------------------------------------------------------------------------- */
+  .concept-rookie .rk-card {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    aspect-ratio: 5 / 7;
+    border-radius: var(--rk-r-card);
+    box-shadow:
+      0 0 0 1px color-mix(in oklab, var(--color-ink) 18%, transparent),
+      0 1px 2px color-mix(in oklab, var(--color-ink) 20%, transparent);
+  }
+
+  .concept-rookie .rk-card--flare {
+    background: var(--color-flare);
+    color: var(--color-ink);
+    --focus: var(--color-ink);
+  }
+  .concept-rookie .rk-card--ultra {
+    background: var(--color-ultra);
+    color: white;
+    --focus: var(--color-chalk);
+  }
+  .concept-rookie .rk-card--ink {
+    background: var(--color-ink);
+    color: var(--color-chalk);
+    --focus: var(--color-flare);
+  }
+  .concept-rookie .rk-card--paper {
+    background: var(--color-paper);
+    color: var(--color-ink);
+  }
+
+  /* Inner printed frame. */
+  .concept-rookie .rk-card__frame {
+    position: absolute;
+    inset: 0.55rem;
+    border-radius: calc(var(--rk-r-card) - 0.45rem);
+    box-shadow: inset 0 0 0 1.5px currentColor;
+    opacity: 0.85;
+    pointer-events: none;
+  }
+
+  /* Hairline field markings printed in the photo window. */
+  .concept-rookie .rk-window {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.375rem;
+    background:
+      repeating-linear-gradient(90deg, color-mix(in oklab, currentColor 16%, transparent) 0 1px, transparent 1px 2.25rem),
+      linear-gradient(180deg, color-mix(in oklab, white 14%, transparent), transparent 60%);
+    box-shadow: inset 0 0 0 1px color-mix(in oklab, currentColor 30%, transparent);
+  }
+
+  .concept-rookie .rk-blank {
+    display: block;
+    height: 0;
+    border-bottom: 1.5px dashed color-mix(in oklab, currentColor 45%, transparent);
+  }
+
+  /* -------------------------------------------------------------------------
+     Holographic tilt (holo.tsx writes the variables; defaults below = at rest)
+  ------------------------------------------------------------------------- */
+  .concept-rookie .rk-holo {
+    --rk-rx: 0deg;
+    --rk-ry: 0deg;
+    --rk-px: 50%;
+    --rk-py: 35%;
+    --rk-bx: 50%;
+    --rk-by: 50%;
+    --rk-glow: 0;
+    transform: perspective(68rem) rotateX(var(--rk-rx)) rotateY(var(--rk-ry));
+    transform-style: preserve-3d;
+    touch-action: pan-y;
+  }
+
+  .concept-rookie .rk-holo[data-live] {
+    will-change: transform;
+  }
+
+  /* Brand-tinted foil bands with fine ink scanlines; position follows the pointer. */
+  .concept-rookie .rk-foil {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+    pointer-events: none;
+    background-image:
+      repeating-linear-gradient(
+        112deg,
+        transparent 0%,
+        color-mix(in oklab, var(--color-flare) 75%, white) 5%,
+        color-mix(in oklab, var(--color-chalk) 90%, white) 9%,
+        color-mix(in oklab, var(--color-ultra-soft) 85%, white) 13%,
+        color-mix(in oklab, var(--color-ultra) 60%, white) 16%,
+        transparent 22%
+      ),
+      repeating-linear-gradient(
+        0deg,
+        color-mix(in oklab, var(--color-ink) 55%, transparent) 0 1px,
+        color-mix(in oklab, white 30%, transparent) 1px 3px
+      );
+    background-size:
+      320% 320%,
+      100% 100%;
+    background-position:
+      calc((50% - var(--rk-bx, 50%)) * 2.6 + 50%) calc((50% - var(--rk-by, 50%)) * 3.2 + 50%),
+      center;
+    background-blend-mode: overlay;
+    mix-blend-mode: color-dodge;
+    opacity: calc(0.18 + var(--rk-glow, 0) * 0.5);
+    filter: saturate(1.15) contrast(1.05);
+  }
+
+  /* A soft light that sits where the pointer is. */
+  .concept-rookie .rk-glare {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-radius: inherit;
+    pointer-events: none;
+    background: radial-gradient(
+      farthest-corner circle at var(--rk-px, 50%) var(--rk-py, 35%),
+      color-mix(in oklab, white 75%, transparent) 0%,
+      color-mix(in oklab, white 22%, transparent) 22%,
+      color-mix(in oklab, var(--color-ink) 28%, transparent) 95%
+    );
+    mix-blend-mode: overlay;
+    opacity: calc(0.25 + var(--rk-glow, 0) * 0.6);
+  }
+
+  /* One slow pass of foil on load, so the effect shows without a pointer. */
+  .concept-rookie .rk-intro-sweep {
+    position: absolute;
+    inset: -10% -60%;
+    z-index: 3;
+    pointer-events: none;
+    background: linear-gradient(
+      110deg,
+      transparent 38%,
+      color-mix(in oklab, var(--color-flare) 55%, white) 45%,
+      color-mix(in oklab, white 95%, transparent) 50%,
+      color-mix(in oklab, var(--color-ultra-soft) 70%, white) 55%,
+      transparent 62%
+    );
+    mix-blend-mode: soft-light;
+    transform: translate3d(-70%, 0, 0);
+    opacity: 0;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .concept-rookie .rk-intro-sweep {
+      animation: rk-intro-sweep 3.2s var(--rk-ease-soft) 0.9s 1 both;
+    }
+  }
+
+  @keyframes rk-intro-sweep {
+    0% {
+      opacity: 0;
+      transform: translate3d(-70%, 0, 0);
+    }
+    15% {
+      opacity: 1;
+    }
+    85% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      transform: translate3d(70%, 0, 0);
+    }
+  }
+
+  /* Reflection on the slab acrylic follows the pointer too. */
+  .concept-rookie .rk-holo .rk-slab::after {
+    background-position: calc(var(--rk-px, 50%) * 0.4) 0;
+    background-size: 160% 100%;
+  }
+
+  /* -------------------------------------------------------------------------
+     Hero entrance (CSS only; the h1 is never gated on JS)
+  ------------------------------------------------------------------------- */
+  @media (prefers-reduced-motion: no-preference) {
+    .concept-rookie .rk-rise {
+      animation: rk-rise 0.9s var(--rk-ease) both;
+      animation-delay: calc(var(--rk-i, 0) * 90ms + 60ms);
+    }
+    .concept-rookie .rk-deal-in {
+      animation: rk-deal-in 1.2s var(--rk-ease) both;
+      animation-delay: calc(var(--rk-i, 0) * 140ms + 200ms);
+    }
+  }
+
+  @keyframes rk-rise {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 0.6em, 0);
+    }
+  }
+
+  @keyframes rk-deal-in {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 2.5rem, 0) rotate(var(--rk-from-rot, 6deg)) scale(0.96);
+    }
+  }
+
+
+  /* Studio light behind a displayed card, and the soft contact shadow beneath it. */
+  .concept-rookie .rk-spot {
+    position: absolute;
+    inset: -12% -18% 0;
+    z-index: -1;
+    background: radial-gradient(50% 46% at 50% 44%, color-mix(in oklab, white 85%, transparent) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .concept-rookie .rk-contact {
+    position: absolute;
+    left: 8%;
+    right: 8%;
+    bottom: -1.75rem;
+    height: 2.5rem;
+    z-index: -1;
+    border-radius: 50%;
+    background: radial-gradient(50% 50% at 50% 50%, color-mix(in oklab, var(--color-ink) 30%, transparent), transparent 70%);
+    pointer-events: none;
+  }
+
+  /* Registration marks at the corners of a display area. */
+  .concept-rookie .rk-reg {
+    position: absolute;
+    width: 0.875rem;
+    height: 0.875rem;
+    color: color-mix(in oklab, var(--color-ink) 45%, transparent);
+    pointer-events: none;
+  }
+
+  /* -------------------------------------------------------------------------
+     Flip cards (Pick your side)
+  ------------------------------------------------------------------------- */
+  .concept-rookie .rk-flip {
+    perspective: 110rem;
+  }
+
+  .concept-rookie .rk-flip__inner {
+    display: grid;
+    /* Card proportions at minimum; taller content still grows it. */
+    aspect-ratio: 5 / 7.2;
+    transform-style: preserve-3d;
+    transition: transform 0.95s var(--rk-ease);
+  }
+
+  .concept-rookie .rk-flip[data-flipped] .rk-flip__inner {
+    transform: rotateY(180deg);
+  }
+
+  .concept-rookie .rk-flip__face {
+    grid-area: 1 / 1;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  .concept-rookie .rk-flip__face--back {
+    transform: rotateY(180deg);
+  }
+
+  /* -------------------------------------------------------------------------
+     The deck (playbook)
+  ------------------------------------------------------------------------- */
+  .concept-rookie .rk-deck__list {
+    scrollbar-width: none;
+    scroll-padding-inline: var(--rk-deck-pad, 1rem);
+  }
+  .concept-rookie .rk-deck__list::-webkit-scrollbar {
+    display: none;
+  }
+
+  @media (min-width: 64rem) and (prefers-reduced-motion: no-preference) {
+    .concept-rookie .rk-deck__track {
+      height: 250vh;
+    }
+    .concept-rookie .rk-deck__stage {
+      position: sticky;
+      top: 4.5rem;
+      min-height: calc(100svh - 4.5rem);
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  /* -------------------------------------------------------------------------
+     Card backs (reasons)
+  ------------------------------------------------------------------------- */
+  .concept-rookie .rk-cardback {
+    background:
+      repeating-linear-gradient(
+        135deg,
+        color-mix(in oklab, var(--color-ink) 5%, transparent) 0 1px,
+        transparent 1px 9px
+      ),
+      var(--color-paper);
+  }
+
+  /* -------------------------------------------------------------------------
+     Closing fan
+  ------------------------------------------------------------------------- */
+  .concept-rookie .rk-fan > * {
+    transition: transform 0.8s var(--rk-ease);
+  }
+  .concept-rookie .rk-fan > :nth-child(1) {
+    transform: translate3d(-58%, 6%, 0) rotate(-11deg);
+  }
+  .concept-rookie .rk-fan > :nth-child(2) {
+    z-index: 2;
+    transform: translate3d(0, -2%, 0);
+  }
+  .concept-rookie .rk-fan > :nth-child(3) {
+    transform: translate3d(58%, 6%, 0) rotate(11deg);
+  }
+  @media (hover: hover) {
+    .concept-rookie .rk-fan:hover > :nth-child(1) {
+      transform: translate3d(-72%, 8%, 0) rotate(-15deg);
+    }
+    .concept-rookie .rk-fan:hover > :nth-child(2) {
+      transform: translate3d(0, -6%, 0);
+    }
+    .concept-rookie .rk-fan:hover > :nth-child(3) {
+      transform: translate3d(72%, 8%, 0) rotate(15deg);
+    }
+  }
+
+  /* -------------------------------------------------------------------------
+     FAQ (restyled shared accordion)
+  ------------------------------------------------------------------------- */
+  .concept-rookie .rk-faq [data-slot='accordion-item'] {
+    border-width: 0 0 1px;
+    border-color: var(--rk-hair);
+  }
+  .concept-rookie .rk-faq [data-slot='accordion-item']:first-child {
+    border-top-width: 1px;
+  }
+  .concept-rookie .rk-faq [data-slot='accordion-trigger'] {
+    min-height: 4.5rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .concept-rookie .rk-faq [data-slot='accordion-trigger'] > span[aria-hidden] {
+    border-radius: 0.5rem;
+    border-width: 1.5px;
+    border-color: color-mix(in oklab, var(--color-ink) 28%, transparent);
+  }
+  .concept-rookie .rk-faq [data-slot='accordion-trigger']:hover > span[aria-hidden] {
+    border-color: var(--color-ink);
+    background: var(--color-ink);
+    color: var(--color-chalk);
+  }
+
+
+  /* -------------------------------------------------------------------------
+     Foil text: a single pass of light across a word (hero "fit.", closing "play?").
+     `color` stays a solid AA colour for anything that reads it (and for axe).
+  ------------------------------------------------------------------------- */
+  .concept-rookie .rk-foil-text {
+    color: var(--color-flare-deep);
+    background-image: linear-gradient(
+      100deg,
+      var(--color-flare-deep) 0%,
+      var(--color-flare-deep) 38%,
+      var(--color-flare) 46%,
+      var(--color-ultra) 52%,
+      var(--color-flare-deep) 60%,
+      var(--color-flare-deep) 100%
+    );
+    background-size: 320% 100%;
+    background-position: 0% 0;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .concept-rookie .rk-foil-text {
+      animation: rk-foil-text 2.4s var(--rk-ease-soft) 1.2s 1 both;
+    }
+    .concept-rookie .rk-foil-text--view {
+      animation: none;
+    }
+    .concept-rookie [data-lit] .rk-foil-text--view,
+    .concept-rookie .rk-foil-text--view[data-lit] {
+      animation: rk-foil-text 2.4s var(--rk-ease-soft) 0.2s 1 both;
+    }
+  }
+  @keyframes rk-foil-text {
+    from {
+      background-position: 100% 0;
+    }
+    to {
+      background-position: 0% 0;
+    }
+  }
+
+  /* Key words in the mission sentence, set in the wide nameplate caps. */
+  .concept-rookie .rk-word {
+    font-size: 0.84em;
+    font-weight: 800;
+    font-stretch: 125%;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+  }
+
+  /* -------------------------------------------------------------------------
+     Footer wordmark (decorative CSS content, so it isn't read or contrast-checked)
+  ------------------------------------------------------------------------- */
+  .concept-rookie .rk-wordmark::before {
+    content: 'Real NIL';
+  }
+
+  /* -------------------------------------------------------------------------
+     Mobile menu (portals outside the concept root)
+  ------------------------------------------------------------------------- */
+  /* The shared Sheet is an ink surface (surface-ink), so the menu is designed dark. */
+  .rookie-portal {
+    --rk-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}

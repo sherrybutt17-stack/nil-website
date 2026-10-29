@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Reveal } from '@/components/motion/reveal'
 import { commitments, mission, proof } from '@/content/home'
-import { campaignPosts, partners, showEmptySlots } from '@/content/proof'
+import { campaignPosts, partners, showEmptySlots } from '@/content/sample'
 import { ctas } from '@/content/site'
 import { cn } from '@/lib/utils'
 import { pad2, SectionIndex } from './parts'
@@ -165,10 +165,10 @@ export function Proof() {
                       <li key={partner.name} className="grid h-24 place-items-center bg-paper px-4">
                         {partner.href ? (
                           <a href={partner.href} target="_blank" rel="noopener" className="grid h-full w-full place-items-center">
-                            <Image src={partner.logo} alt={partner.name} width={140} height={48} className="max-h-10 w-auto object-contain" />
+                            <Image src={partner.logo} alt={partner.name} width={140} height={48} className="max-h-10 w-auto max-w-full object-contain" />
                           </a>
                         ) : (
-                          <Image src={partner.logo} alt={partner.name} width={140} height={48} className="max-h-10 w-auto object-contain" />
+                          <Image src={partner.logo} alt={partner.name} width={140} height={48} className="max-h-10 w-auto max-w-full object-contain" />
                         )}
                       </li>
                     ))

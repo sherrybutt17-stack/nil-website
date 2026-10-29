@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { ArrowRight, ArrowUp } from 'lucide-react'
-import { ContactEmail, Placeholder } from '@/components/placeholder'
+import { ContactEmail, Placeholder } from '@/components/mockups/sample-contact'
 import { footer } from '@/content/home'
 import { ctas, legal, site } from '@/content/site'
 import { Wordmark } from './header'

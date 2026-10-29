@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { Logo } from '@/components/graphics/logo'
-import { ContactEmail, Placeholder } from '@/components/placeholder'
+import { ContactEmail, Placeholder } from '@/components/mockups/sample-contact'
 import { footer as footerCopy } from '@/content/home'
 import { ctas, legal, nav, site } from '@/content/site'
 import { MobileMenu } from './mobile-menu'

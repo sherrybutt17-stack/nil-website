@@ -1,0 +1,1328 @@
+/* ---------------------------------------------------------------------------
+   Concept E · Studio
+   Everything is scoped to the concept root or its portalled menu, and sits in
+   the components layer so Tailwind utilities on the same element still win.
+   Colours come from tokens, so the Night palette recolours the page.
+--------------------------------------------------------------------------- */
+@layer components {
+  :where(.concept-studio, .studio-portal) {
+    --st-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --st-ease-io: cubic-bezier(0.65, 0, 0.35, 1);
+    --st-header: 4.5rem;
+    --st-gutter: 1rem;
+    --st-line: color-mix(in oklab, var(--color-ink) 14%, transparent);
+    --st-line-light: color-mix(in oklab, var(--color-chalk) 18%, transparent);
+  }
+  @media (min-width: 40rem) {
+    :where(.concept-studio, .studio-portal) {
+      --st-gutter: 1.5rem;
+    }
+  }
+  @media (min-width: 64rem) {
+    :where(.concept-studio, .studio-portal) {
+      --st-gutter: 2.5rem;
+    }
+  }
+
+  .concept-studio,
+  .studio-portal {
+    font-family: var(--font-studio), ui-sans-serif, system-ui, sans-serif;
+    font-optical-sizing: auto;
+  }
+  .concept-studio {
+    background: var(--color-chalk);
+    color: var(--color-ink);
+    overflow-x: clip;
+  }
+  .concept-studio ::selection {
+    background: var(--color-ink);
+    color: var(--color-chalk);
+  }
+
+  :where(.concept-studio, .studio-portal) .st-wrap {
+    width: 100%;
+    max-width: 110rem;
+    margin-inline: auto;
+    padding-inline: var(--st-gutter);
+  }
+
+  /* ---- Type ---------------------------------------------------------------- */
+  :where(.concept-studio, .studio-portal) .st-label {
+    font-size: 0.75rem;
+    line-height: 1.3;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-stretch: 100%;
+  }
+  :where(.concept-studio, .studio-portal) .st-wordmark {
+    font-size: 1.0625rem;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+  }
+  /* Emphasis by tone, not italics: the second voice of a headline sits back. */
+  :where(.concept-studio, .studio-portal) .st-accent {
+    font-style: normal;
+    color: color-mix(in oklab, var(--color-ink) 52%, transparent);
+  }
+  :where(.concept-studio, .studio-portal) .st-closing .st-accent {
+    color: color-mix(in oklab, var(--color-chalk) 58%, transparent);
+  }
+  :where(.concept-studio, .studio-portal) .st-h2 {
+    font-size: clamp(2.6rem, 1.15rem + 5.4vw, 7rem);
+    font-weight: 500;
+    font-stretch: 88%;
+    letter-spacing: -0.045em;
+    line-height: 0.94;
+    text-wrap: balance;
+  }
+  :where(.concept-studio, .studio-portal) .st-h2--xl {
+    font-size: clamp(3rem, 0.7rem + 9.2vw, 11rem);
+    line-height: 0.9;
+  }
+  :where(.concept-studio, .studio-portal) .st-statement {
+    font-size: clamp(2.25rem, 0.95rem + 5vw, 6.5rem);
+    font-weight: 500;
+    font-stretch: 90%;
+    letter-spacing: -0.042em;
+    line-height: 0.98;
+  }
+  :where(.concept-studio, .studio-portal) .st-note {
+    padding-left: 1.25rem;
+    border-left: 2px solid var(--color-flare);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: color-mix(in oklab, var(--color-ink) 80%, transparent);
+    text-wrap: pretty;
+  }
+
+  /* Line masks: lines rise out of their own clip. Padding keeps descenders and italics. */
+  :where(.concept-studio, .studio-portal) .st-mask {
+    display: block;
+    overflow: clip;
+    padding: 0 0.08em 0.12em 0;
+    margin: 0 -0.08em -0.12em 0;
+  }
+
+  /* ---- Links & buttons ---------------------------------------------------- */
+  :where(.concept-studio, .studio-portal) .st-link {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-repeat: no-repeat;
+    background-size: 0% 1px;
+    background-position: 100% 100%;
+    transition: background-size 0.5s var(--st-ease);
+    touch-action: manipulation;
+  }
+  :where(.concept-studio, .studio-portal) .st-link:hover,
+  :where(.concept-studio, .studio-portal) .st-link:focus-visible,
+  :where(.concept-studio, .studio-portal) .st-link[aria-current='page'] {
+    background-size: 100% 1px;
+    background-position: 0% 100%;
+  }
+  :where(.concept-studio, .studio-portal) .st-link--line {
+    background-size: 100% 1px;
+    background-position: 0% 100%;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    :where(.concept-studio, .studio-portal) .st-link--line:hover {
+      animation: st-redraw 0.8s var(--st-ease);
+    }
+  }
+
+  :where(.concept-studio, .studio-portal) .st-magnet {
+    display: inline-flex;
+  }
+  :where(.concept-studio, .studio-portal) .st-btn {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3.25rem;
+    padding: 0 1.6rem;
+    border-radius: 999px;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    white-space: nowrap;
+    touch-action: manipulation;
+    transition: color 0.35s var(--st-ease), box-shadow 0.35s var(--st-ease);
+  }
+  :where(.concept-studio, .studio-portal) .st-btn--lg {
+    min-height: 3.75rem;
+    padding: 0 2rem;
+    font-size: 1rem;
+  }
+  /* Hover fill rises from below; a sheen crosses it. */
+  :where(.concept-studio, .studio-portal) .st-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    border-radius: inherit;
+    transform: translate3d(0, 102%, 0);
+    transition: transform 0.55s var(--st-ease);
+  }
+  :where(.concept-studio, .studio-portal) .st-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    width: 55%;
+    background: linear-gradient(105deg, transparent 15%, color-mix(in oklab, white 34%, transparent) 50%, transparent 85%);
+    transform: translate3d(-180%, 0, 0) skewX(-16deg);
+    pointer-events: none;
+  }
+  :where(.concept-studio, .studio-portal) .st-btn:hover::before,
+  :where(.concept-studio, .studio-portal) .st-btn:focus-visible::before {
+    transform: none;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    :where(.concept-studio, .studio-portal) .st-btn:hover::after {
+      animation: st-sheen 1s var(--st-ease) 0.1s;
+    }
+  }
+  :where(.concept-studio, .studio-portal) .st-btn__label {
+    position: relative;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+  }
+  :where(.concept-studio, .studio-portal) .st-btn__arrow {
+    display: inline-grid;
+    overflow: hidden;
+    width: 1rem;
+    height: 1rem;
+  }
+  :where(.concept-studio, .studio-portal) .st-btn__arrow > svg {
+    grid-area: 1 / 1;
+    transition: transform 0.5s var(--st-ease);
+  }
+  :where(.concept-studio, .studio-portal) .st-btn__arrow > svg:last-child {
+    transform: translate3d(-150%, 0, 0);
+  }
+  :where(.concept-studio, .studio-portal) .st-btn:hover .st-btn__arrow > svg:first-child {
+    transform: translate3d(150%, 0, 0);
+  }
+  :where(.concept-studio, .studio-portal) .st-btn:hover .st-btn__arrow > svg:last-child {
+    transform: none;
+  }
+
+  :where(.concept-studio, .studio-portal) .st-btn--ink {
+    background: var(--color-ink);
+    color: var(--color-chalk);
+    --focus: var(--color-ultra);
+    box-shadow: 0 1px 0 color-mix(in oklab, var(--color-ink) 10%, transparent), 0 12px 24px -14px color-mix(in oklab, var(--color-ink) 70%, transparent);
+  }
+  :where(.concept-studio, .studio-portal) .st-btn--ink::before {
+    background: var(--color-ultra);
+  }
+  :where(.concept-studio, .studio-portal) .st-btn--ink:hover {
+    color: #fff;
+  }
+  :where(.concept-studio, .studio-portal) .st-btn--ultra {
+    background: var(--color-ultra);
+    color: #fff;
+    box-shadow: 0 1px 0 color-mix(in oklab, var(--color-ultra) 20%, transparent), 0 14px 28px -14px color-mix(in oklab, var(--color-ultra) 80%, transparent);
+  }
+  :where(.concept-studio, .studio-portal) .st-btn--ultra::before {
+    background: var(--color-ink);
+  }
+  :where(.concept-studio, .studio-portal) .st-btn--flare {
+    background: var(--color-flare);
+    color: var(--color-ink);
+  }
+  :where(.concept-studio, .studio-portal) .st-btn--flare::before {
+    background: var(--color-ink);
+  }
+  :where(.concept-studio, .studio-portal) .st-btn--flare:hover {
+    color: var(--color-chalk);
+  }
+  :where(.concept-studio, .studio-portal) .st-btn--chalk {
+    background: var(--color-chalk);
+    color: var(--color-ink);
+    --focus: var(--color-chalk);
+  }
+  :where(.concept-studio, .studio-portal) .st-btn--chalk::before {
+    background: var(--color-ink);
+  }
+  :where(.concept-studio, .studio-portal) .st-btn--chalk:hover {
+    color: var(--color-chalk);
+  }
+  :where(.concept-studio, .studio-portal) .st-btn--ghost {
+    color: var(--color-ink);
+    box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--color-ink) 30%, transparent);
+  }
+  :where(.concept-studio, .studio-portal) .st-btn--ghost::before {
+    background: var(--color-ink);
+  }
+  :where(.concept-studio, .studio-portal) .st-btn--ghost:hover {
+    color: var(--color-chalk);
+  }
+  :where(.concept-studio, .studio-portal) .st-btn--ghost-light {
+    color: var(--color-chalk);
+    box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--color-chalk) 35%, transparent);
+  }
+  :where(.concept-studio, .studio-portal) .st-btn--ghost-light::before {
+    background: var(--color-chalk);
+  }
+  :where(.concept-studio, .studio-portal) .st-btn--ghost-light:hover {
+    color: var(--color-ink);
+  }
+
+  :where(.concept-studio, .studio-portal) .st-round {
+    display: grid;
+    place-items: center;
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: 999px;
+    color: var(--color-ink);
+    box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--color-ink) 28%, transparent);
+    transition: background-color 0.3s var(--st-ease), color 0.3s var(--st-ease), opacity 0.3s;
+    touch-action: manipulation;
+  }
+  :where(.concept-studio, .studio-portal) .st-round:hover {
+    background: var(--color-ink);
+    color: var(--color-chalk);
+  }
+  :where(.concept-studio, .studio-portal) .st-round--chalk {
+    color: var(--color-chalk);
+    box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--color-chalk) 32%, transparent);
+  }
+  :where(.concept-studio, .studio-portal) .st-round--chalk:hover {
+    background: var(--color-chalk);
+    color: var(--color-ink);
+  }
+  :where(.concept-studio, .studio-portal) .st-round[aria-disabled] {
+    opacity: 0.35;
+    cursor: default;
+  }
+  :where(.concept-studio, .studio-portal) .st-round[aria-disabled]:hover {
+    background: transparent;
+    color: inherit;
+  }
+
+  /* ---- Header -------------------------------------------------------------- */
+  :where(.concept-studio, .studio-portal) .st-header {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 40;
+    background: color-mix(in oklab, var(--color-chalk) 84%, transparent);
+    backdrop-filter: blur(14px) saturate(1.3);
+    -webkit-backdrop-filter: blur(14px) saturate(1.3);
+    box-shadow: 0 1px 0 var(--st-line);
+    transition: transform 0.6s var(--st-ease);
+  }
+  :where(.concept-studio, .studio-portal) .st-header[data-hidden] {
+    transform: translate3d(0, -101%, 0);
+  }
+  :where(.concept-studio, .studio-portal) .st-header__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    height: var(--st-header);
+    max-width: 110rem;
+    margin-inline: auto;
+    padding-inline: var(--st-gutter);
+  }
+  :where(.concept-studio, .studio-portal) .st-progress {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 2px;
+    background: var(--color-ink);
+    transform-origin: 0 50%;
+  }
+  :where(.concept-studio, .studio-portal) .st-menu-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-height: 2.75rem;
+    padding: 0 1.1rem;
+    border-radius: 999px;
+    box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--color-ink) 28%, transparent);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    touch-action: manipulation;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  :where(.concept-studio, .studio-portal) .st-menu-button:hover {
+    background: var(--color-ink);
+    color: var(--color-chalk);
+  }
+  :where(.concept-studio, .studio-portal) .st-menu-button__lines {
+    width: 1.1rem;
+    height: 8px;
+    border-block: 1.5px solid currentColor;
+  }
+
+  /* Full-screen menu (portalled) */
+  .studio-portal {
+    --focus: var(--color-flare);
+  }
+  .studio-portal .st-menu-link {
+    font-size: clamp(2.75rem, 1.6rem + 6vw, 4.75rem);
+    font-weight: 500;
+    font-stretch: 88%;
+    letter-spacing: -0.045em;
+    line-height: 1;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .studio-portal[data-state='open'] .st-menu-item {
+      animation: st-rise-soft 0.8s var(--st-ease) both;
+      animation-delay: calc(140ms + var(--i) * 60ms);
+    }
+  }
+
+  /* ---- Hero ---------------------------------------------------------------- */
+  :where(.concept-studio, .studio-portal) .st-hero {
+    padding-top: calc(var(--st-header) + 2.25rem);
+    padding-bottom: clamp(3rem, 2rem + 3vw, 5rem);
+    overflow-x: clip;
+  }
+  :where(.concept-studio, .studio-portal) .st-hero__meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    padding-bottom: clamp(2rem, 1rem + 3vw, 3.5rem);
+    color: color-mix(in oklab, var(--color-ink) 68%, transparent);
+  }
+  :where(.concept-studio, .studio-portal) .st-hero__title {
+    font-size: clamp(3.05rem, 0.1rem + 12.67vw, 11.5rem);
+    font-weight: 500;
+    font-stretch: 86%;
+    letter-spacing: -0.052em;
+    line-height: 0.88;
+  }
+  /* Last headline line: "Real fit." plus the format window, which takes the rest of the line. */
+  :where(.concept-studio, .studio-portal) .st-rise.st-line3 {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.16em;
+  }
+  :where(.concept-studio, .studio-portal) .st-window {
+    position: relative;
+    display: block;
+    flex: 1 1 0;
+    min-width: 0;
+    height: 0.8em;
+    margin-bottom: 0.07em;
+    border-radius: 0.14em;
+    background: var(--color-ink);
+    overflow: hidden;
+    isolation: isolate;
+  }
+  @media (max-width: 47.99rem) {
+    :where(.concept-studio, .studio-portal) .st-rise.st-line3 {
+      flex-wrap: wrap;
+    }
+    :where(.concept-studio, .studio-portal) .st-window {
+      flex-basis: 100%;
+      height: 2.1em;
+      margin: 0.14em 0 0;
+      border-radius: 0.3em;
+    }
+  }
+  :where(.concept-studio, .studio-portal) .st-window__track {
+    display: flex;
+    gap: clamp(6px, 0.05em, 12px);
+    height: 100%;
+    width: max-content;
+    padding: clamp(6px, 0.06em, 12px);
+  }
+  :where(.concept-studio, .studio-portal) .st-wframe {
+    display: grid;
+    place-items: center;
+    height: 100%;
+    aspect-ratio: 9 / 16;
+    border-radius: clamp(6px, 0.06em, 14px);
+  }
+  :where(.concept-studio, .studio-portal) .st-wframe.st-frame--ink-raised {
+    background: var(--color-ink-raised);
+    color: var(--color-chalk);
+    box-shadow: inset 0 0 0 1px var(--st-line-light);
+  }
+  :where(.concept-studio, .studio-portal) .st-wframe svg {
+    width: 58%;
+  }
+  :where(.concept-studio, .studio-portal) .st-hero__lead {
+    display: grid;
+    gap: 2.25rem;
+    margin-top: clamp(2.25rem, 1.5rem + 2.4vw, 3.5rem);
+  }
+  @media (min-width: 64rem) {
+    :where(.concept-studio, .studio-portal) .st-hero__lead {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 2rem;
+      align-items: end;
+    }
+    :where(.concept-studio, .studio-portal) .st-hero__lead > :first-child {
+      grid-column: 1 / span 6;
+    }
+    :where(.concept-studio, .studio-portal) .st-hero__lead > :last-child {
+      grid-column: 8 / span 5;
+    }
+  }
+  :where(.concept-studio, .studio-portal) .st-hero__index {
+    display: grid;
+    margin-top: clamp(4.5rem, 3rem + 5vw, 8rem);
+  }
+  @media (min-width: 40rem) {
+    :where(.concept-studio, .studio-portal) .st-hero__index {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 1.5rem;
+    }
+  }
+  @media (min-width: 64rem) {
+    :where(.concept-studio, .studio-portal) .st-hero__index {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      column-gap: 2rem;
+    }
+  }
+  :where(.concept-studio, .studio-portal) .st-hero__index li {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    padding: 1.1rem 0 1.75rem;
+    border-top: 1px solid var(--st-line);
+    font-size: 1.0625rem;
+    line-height: 1.45;
+    text-wrap: pretty;
+  }
+  :where(.concept-studio, .studio-portal) .st-rise {
+    display: block;
+    transform-origin: 0 100%;
+  }
+  :where(.concept-studio, .studio-portal) .st-hero__body {
+    display: grid;
+    gap: 3.5rem;
+    margin-top: clamp(2.75rem, 1.5rem + 4vw, 5rem);
+  }
+  @media (min-width: 64rem) {
+    :where(.concept-studio, .studio-portal) .st-hero__body {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 2rem;
+    }
+    :where(.concept-studio, .studio-portal) .st-hero__body > :first-child {
+      grid-column: 1 / span 6;
+    }
+    :where(.concept-studio, .studio-portal) .st-hero__body > :last-child {
+      grid-column: 8 / span 5;
+    }
+  }
+  :where(.concept-studio, .studio-portal) .st-index-row {
+    display: grid;
+    grid-template-columns: 2.75rem 1fr;
+    gap: 1rem;
+    align-items: baseline;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--st-line);
+    font-size: 1.0625rem;
+    line-height: 1.45;
+  }
+
+  /* Frame strip */
+  :where(.concept-studio, .studio-portal) .st-strip {
+    margin-top: clamp(4rem, 2.5rem + 5vw, 7rem);
+    overflow-x: clip;
+  }
+  :where(.concept-studio, .studio-portal) .st-strip__track {
+    display: flex;
+    gap: 0.75rem;
+    width: max-content;
+    padding-inline: var(--st-gutter);
+  }
+  :where(.concept-studio, .studio-portal) .st-frame {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: clamp(9.5rem, 6.5rem + 10vw, 17.5rem);
+    aspect-ratio: 9 / 16;
+    padding: clamp(0.85rem, 0.6rem + 0.6vw, 1.25rem);
+    border-radius: 18px;
+  }
+  :where(.concept-studio, .studio-portal) .st-frame--ink {
+    background: var(--color-ink);
+    color: var(--color-chalk);
+  }
+  :where(.concept-studio, .studio-portal) .st-frame--flare {
+    background: var(--color-flare);
+    color: var(--color-ink);
+  }
+  :where(.concept-studio, .studio-portal) .st-frame--paper {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    box-shadow: inset 0 0 0 1px var(--st-line);
+  }
+  :where(.concept-studio, .studio-portal) .st-frame--ultra {
+    background: var(--color-ultra);
+    color: #fff;
+  }
+  :where(.concept-studio, .studio-portal) .st-frame__glyph {
+    width: 52%;
+    align-self: center;
+  }
+  :where(.concept-studio, .studio-portal) .st-frame__name {
+    font-size: clamp(0.95rem, 0.75rem + 0.6vw, 1.375rem);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.12;
+    text-wrap: balance;
+  }
+
+  /* Sheen: a soft band of light crossing a surface */
+  :where(.concept-studio, .studio-portal) .st-sheen {
+    isolation: isolate;
+    overflow: hidden;
+  }
+  :where(.concept-studio, .studio-portal) .st-sheen::after {
+    content: '';
+    position: absolute;
+    top: -10%;
+    bottom: -10%;
+    left: 0;
+    z-index: 1;
+    width: 65%;
+    background: linear-gradient(105deg, transparent 20%, color-mix(in oklab, white 30%, transparent) 50%, transparent 80%);
+    transform: translate3d(-180%, 0, 0) skewX(-14deg);
+    pointer-events: none;
+  }
+
+  /* ---- Partners / slots ---------------------------------------------------- */
+  :where(.concept-studio, .studio-portal) .st-partners {
+    padding-block: clamp(2.5rem, 2rem + 2vw, 4rem);
+    border-block: 1px solid var(--st-line);
+  }
+  :where(.concept-studio, .studio-portal) .st-partners__row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin-top: 1.75rem;
+  }
+  @media (min-width: 40rem) {
+    :where(.concept-studio, .studio-portal) .st-partners__row {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 64rem) {
+    :where(.concept-studio, .studio-portal) .st-partners__row {
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+  }
+  :where(.concept-studio, .studio-portal) .st-slot {
+    display: grid;
+    place-items: center;
+    min-height: 4.5rem;
+    border: 1.5px dashed color-mix(in oklab, var(--color-ink) 38%, transparent);
+    border-radius: 14px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: color-mix(in oklab, var(--color-ink) 72%, transparent);
+  }
+  :where(.concept-studio, .studio-portal) .st-slot--post {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    aspect-ratio: 9 / 16;
+    padding: 0.9rem;
+  }
+
+  /* ---- Sections ------------------------------------------------------------ */
+  :where(.concept-studio, .studio-portal) .st-section {
+    padding-block: clamp(5.5rem, 3rem + 8vw, 11rem);
+    scroll-margin-top: var(--st-header);
+  }
+  :where(.concept-studio, .studio-portal) .st-section--tight {
+    padding-block: clamp(4rem, 2.5rem + 5vw, 8rem);
+  }
+  :where(.concept-studio, .studio-portal) .st-section--ink {
+    background: var(--color-ink);
+    color: var(--color-chalk);
+    --focus: var(--color-flare);
+    --st-line: var(--st-line-light);
+  }
+  :where(.concept-studio, .studio-portal) .st-section--clip {
+    overflow-x: clip;
+  }
+
+  /* ---- Fold panels --------------------------------------------------------- */
+  :where(.concept-studio, .studio-portal) .st-folds {
+    position: relative;
+  }
+  :where(.concept-studio, .studio-portal) .st-fold {
+    position: sticky;
+    top: var(--st-top, 0px);
+    display: flex;
+    flex-direction: column;
+    min-height: 100svh;
+    overflow: clip;
+  }
+  :where(.concept-studio, .studio-portal) .st-fold--chalk {
+    background: var(--color-chalk);
+  }
+  :where(.concept-studio, .studio-portal) .st-fold--ultra {
+    background: var(--color-ultra);
+    color: #fff;
+    --focus: var(--color-chalk);
+  }
+  :where(.concept-studio, .studio-portal) .st-fold--flare {
+    background: var(--color-flare);
+    color: var(--color-ink);
+    --focus: var(--color-ink);
+  }
+  :where(.concept-studio, .studio-portal) .st-fold__inner {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-block: calc(var(--st-header) + 2.5rem) clamp(3rem, 2rem + 3vw, 5rem);
+    transform-origin: 50% 0%;
+  }
+  :where(.concept-studio, .studio-portal) .st-fold__shade {
+    position: absolute;
+    inset: 0;
+    background: var(--color-ink);
+    pointer-events: none;
+    opacity: 0;
+  }
+  :where(.concept-studio, .studio-portal) .st-fold__mark {
+    width: clamp(4.5rem, 2.5rem + 8vw, 12rem);
+    flex-shrink: 0;
+  }
+  :where(.concept-studio, .studio-portal) .st-fold__grid {
+    display: grid;
+    gap: 2.5rem;
+    margin-top: clamp(2rem, 1rem + 4vw, 5rem);
+  }
+  :where(.concept-studio, .studio-portal) .st-fold__title {
+    font-size: clamp(2.6rem, 1rem + 6.4vw, 7.75rem);
+  }
+  @media (min-width: 64rem) {
+    :where(.concept-studio, .studio-portal) .st-fold__grid {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 2rem;
+      align-items: end;
+    }
+    :where(.concept-studio, .studio-portal) .st-fold__title {
+      grid-column: 1 / span 7;
+    }
+    :where(.concept-studio, .studio-portal) .st-fold__steps {
+      grid-column: 8 / span 5;
+    }
+  }
+  :where(.concept-studio, .studio-portal) .st-fold__steps li {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    gap: 1rem;
+    align-items: baseline;
+    padding: 1rem 0;
+    border-top: 1px solid color-mix(in oklab, currentColor 28%, transparent);
+    font-size: 1.0625rem;
+    line-height: 1.4;
+  }
+  :where(.concept-studio, .studio-portal) .st-fold__steps li:last-child {
+    border-bottom: 1px solid color-mix(in oklab, currentColor 28%, transparent);
+  }
+
+  /* ---- Services list ------------------------------------------------------- */
+  :where(.concept-studio, .studio-portal) .st-services {
+    position: relative;
+    margin-top: clamp(3rem, 2rem + 4vw, 6rem);
+  }
+  :where(.concept-studio, .studio-portal) .st-service {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    grid-template-columns: 2.75rem minmax(0, 1fr);
+    gap: 0.6rem 1rem;
+    align-items: baseline;
+    padding: 1.75rem 0;
+    border-top: 1px solid var(--st-line);
+    transition: color 0.4s var(--st-ease);
+  }
+  :where(.concept-studio, .studio-portal) .st-service:last-child {
+    border-bottom: 1px solid var(--st-line);
+  }
+  :where(.concept-studio, .studio-portal) .st-service__title {
+    font-size: clamp(1.85rem, 1rem + 2.9vw, 3.75rem);
+    font-weight: 500;
+    font-stretch: 90%;
+    letter-spacing: -0.038em;
+    line-height: 1.02;
+    transition: transform 0.6s var(--st-ease);
+  }
+  :where(.concept-studio, .studio-portal) .st-service__body {
+    grid-column: 2 / -1;
+    max-width: 34rem;
+    font-size: 1.0625rem;
+    line-height: 1.55;
+    color: color-mix(in oklab, var(--color-ink) 76%, transparent);
+    text-wrap: pretty;
+    transition: color 0.4s var(--st-ease);
+  }
+  @media (min-width: 64rem) {
+    :where(.concept-studio, .studio-portal) .st-service {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 2rem;
+      padding: 2.5rem 0;
+    }
+    :where(.concept-studio, .studio-portal) .st-service__index {
+      grid-column: 1;
+    }
+    :where(.concept-studio, .studio-portal) .st-service__title {
+      grid-column: 2 / span 6;
+    }
+    :where(.concept-studio, .studio-portal) .st-service__body {
+      grid-column: 9 / span 4;
+    }
+  }
+  :where(.concept-studio, .studio-portal) .st-service__fill {
+    position: absolute;
+    inset: 0 calc(var(--st-gutter) * -1);
+    z-index: -1;
+    background: var(--color-ultra);
+    transform: scaleY(0);
+    transform-origin: 50% 100%;
+    transition: transform 0.6s var(--st-ease);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    :where(.concept-studio, .studio-portal) .st-service[data-on] {
+      color: #fff;
+    }
+    :where(.concept-studio, .studio-portal) .st-service[data-on] .st-service__body {
+      color: color-mix(in oklab, #fff 88%, transparent);
+    }
+    :where(.concept-studio, .studio-portal) .st-service[data-on] .st-service__fill {
+      transform: scaleY(1);
+    }
+    :where(.concept-studio, .studio-portal) .st-service[data-on] .st-service__title {
+      transform: translate3d(1.25rem, 0, 0);
+    }
+  }
+  :where(.concept-studio, .studio-portal) .st-preview {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 3;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+  }
+  :where(.concept-studio, .studio-portal) .st-preview__card {
+    position: absolute;
+    left: 1.75rem;
+    top: -8rem;
+    width: 13.5rem;
+    aspect-ratio: 4 / 5;
+    border-radius: 20px;
+    background: var(--color-paper);
+    color: var(--color-ink);
+    box-shadow:
+      0 1px 0 color-mix(in oklab, var(--color-ink) 8%, transparent),
+      0 30px 60px -24px color-mix(in oklab, var(--color-ink) 55%, transparent);
+    opacity: 0;
+    transform: scale(0.6) rotate(-8deg);
+    transform-origin: 0% 100%;
+    transition: opacity 0.35s var(--st-ease), transform 0.6s var(--st-ease);
+  }
+  :where(.concept-studio, .studio-portal) .st-services[data-active] .st-preview__card {
+    opacity: 1;
+    transform: rotate(-3deg);
+  }
+  :where(.concept-studio, .studio-portal) .st-preview__face {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.1rem;
+    opacity: 0;
+    transform: translate3d(0, 10px, 0);
+    transition: opacity 0.3s var(--st-ease), transform 0.5s var(--st-ease);
+  }
+  :where(.concept-studio, .studio-portal) .st-preview__face[data-on] {
+    opacity: 1;
+    transform: none;
+  }
+  :where(.concept-studio, .studio-portal) .st-preview__glyph {
+    width: 80%;
+    align-self: center;
+    color: var(--color-ultra);
+  }
+  :where(.concept-studio, .studio-portal) .st-preview__word {
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  @media not ((hover: hover) and (pointer: fine)) {
+    :where(.concept-studio, .studio-portal) .st-preview {
+      display: none;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    :where(.concept-studio, .studio-portal) .st-preview {
+      display: none;
+    }
+  }
+
+  /* ---- Stacking cards ------------------------------------------------------ */
+  :where(.concept-studio, .studio-portal) .st-stack__item {
+    position: sticky;
+    top: calc(var(--st-header) + 1.25rem + var(--i) * 1.1rem);
+    margin-bottom: 14vh;
+  }
+  :where(.concept-studio, .studio-portal) .st-stack__item:last-child {
+    margin-bottom: 0;
+  }
+  :where(.concept-studio, .studio-portal) .st-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    min-height: clamp(19rem, 14rem + 16vw, 31rem);
+    padding: clamp(1.4rem, 1rem + 1.6vw, 2.6rem);
+    border-radius: 24px;
+    overflow: hidden;
+    transform-origin: 50% 0%;
+    box-shadow:
+      0 1px 0 color-mix(in oklab, var(--color-ink) 8%, transparent),
+      0 40px 70px -40px color-mix(in oklab, var(--color-ink) 50%, transparent);
+  }
+  :where(.concept-studio, .studio-portal) .st-card--paper {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    box-shadow:
+      inset 0 0 0 1px var(--st-line),
+      0 40px 70px -40px color-mix(in oklab, var(--color-ink) 45%, transparent);
+  }
+  :where(.concept-studio, .studio-portal) .st-card--ink {
+    background: var(--color-ink);
+    color: var(--color-chalk);
+    --focus: var(--color-flare);
+  }
+  :where(.concept-studio, .studio-portal) .st-card--flare {
+    background: var(--color-flare);
+    color: var(--color-ink);
+    --focus: var(--color-ink);
+  }
+  :where(.concept-studio, .studio-portal) .st-card__title {
+    font-size: clamp(2.5rem, 1.2rem + 4.2vw, 5.75rem);
+    font-weight: 500;
+    font-stretch: 88%;
+    letter-spacing: -0.045em;
+    line-height: 0.95;
+  }
+  :where(.concept-studio, .studio-portal) .st-card__shade {
+    position: absolute;
+    inset: 0;
+    background: var(--color-ink);
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  /* ---- Reel ---------------------------------------------------------------- */
+  :where(.concept-studio, .studio-portal) .st-reel__title {
+    font-size: clamp(1.5rem, 1rem + 1.6vw, 2.5rem);
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+  :where(.concept-studio, .studio-portal) .st-reel__track {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding: 0.25rem max(var(--st-gutter), calc((100% - 110rem) / 2 + var(--st-gutter))) 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: max(var(--st-gutter), calc((100% - 110rem) / 2 + var(--st-gutter)));
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    cursor: grab;
+  }
+  :where(.concept-studio, .studio-portal) .st-reel__track::-webkit-scrollbar {
+    display: none;
+  }
+  :where(.concept-studio, .studio-portal) .st-reel__track[data-dragging] {
+    scroll-snap-type: none;
+    cursor: grabbing;
+    user-select: none;
+  }
+  :where(.concept-studio, .studio-portal) .st-reel__track:focus-visible {
+    outline-offset: -3px;
+  }
+  :where(.concept-studio, .studio-portal) .st-brief {
+    position: relative;
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: clamp(15rem, 11rem + 13vw, 24rem);
+    aspect-ratio: 4 / 5;
+    padding: clamp(1.2rem, 1rem + 0.6vw, 1.6rem);
+    border-radius: 22px;
+    scroll-snap-align: start;
+  }
+  :where(.concept-studio, .studio-portal) .st-brief--paper {
+    background: var(--color-paper);
+    color: var(--color-ink);
+  }
+  :where(.concept-studio, .studio-portal) .st-brief--ultra {
+    background: var(--color-ultra);
+    color: #fff;
+  }
+  :where(.concept-studio, .studio-portal) .st-brief--ink {
+    background: var(--color-ink-raised);
+    color: var(--color-chalk);
+    box-shadow: inset 0 0 0 1px var(--st-line-light);
+  }
+  :where(.concept-studio, .studio-portal) .st-brief--flare {
+    background: var(--color-flare);
+    color: var(--color-ink);
+  }
+  :where(.concept-studio, .studio-portal) .st-brief__name {
+    font-size: clamp(1.75rem, 1.15rem + 1.7vw, 2.85rem);
+    font-weight: 500;
+    font-stretch: 92%;
+    letter-spacing: -0.035em;
+    line-height: 1.02;
+    text-wrap: balance;
+  }
+  :where(.concept-studio, .studio-portal) .st-reel__bar {
+    display: block;
+    max-width: 22rem;
+    height: 2px;
+    overflow: hidden;
+    border-radius: 2px;
+    background: var(--st-line-light);
+  }
+  :where(.concept-studio, .studio-portal) .st-reel__bar > span {
+    display: block;
+    height: 100%;
+    background: var(--color-chalk);
+    transform: scaleX(0.08);
+    transform-origin: 0 50%;
+  }
+
+  /* ---- Commitments --------------------------------------------------------- */
+  :where(.concept-studio, .studio-portal) .st-commit__row {
+    display: grid;
+    grid-template-columns: 2.75rem minmax(0, 1fr);
+    gap: 0.75rem 1rem;
+    align-items: baseline;
+    padding: 2rem 0 2.75rem;
+  }
+  :where(.concept-studio, .studio-portal) .st-commit__title {
+    font-size: clamp(1.9rem, 1rem + 3.3vw, 4.5rem);
+    font-weight: 500;
+    font-stretch: 90%;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+  :where(.concept-studio, .studio-portal) .st-commit__body {
+    grid-column: 2 / -1;
+    max-width: 32rem;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: color-mix(in oklab, var(--color-ink) 76%, transparent);
+  }
+  @media (min-width: 64rem) {
+    :where(.concept-studio, .studio-portal) .st-commit__row {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 2rem;
+    }
+    :where(.concept-studio, .studio-portal) .st-commit__title {
+      grid-column: 2 / span 7;
+    }
+    :where(.concept-studio, .studio-portal) .st-commit__body {
+      grid-column: 9 / span 4;
+      padding-top: 0.5rem;
+    }
+  }
+
+  /* ---- Closing ------------------------------------------------------------- */
+  :where(.concept-studio, .studio-portal) .st-closing {
+    background: var(--color-ink);
+    color: var(--color-chalk);
+    --focus: var(--color-flare);
+    padding-block: clamp(6rem, 4rem + 8vw, 12rem) clamp(4rem, 3rem + 4vw, 7rem);
+    overflow-x: clip;
+  }
+  :where(.concept-studio, .studio-portal) .st-closing__title {
+    font-size: clamp(3.2rem, 0.55rem + 12.2vw, 13rem);
+    font-weight: 500;
+    font-stretch: 86%;
+    letter-spacing: -0.052em;
+    line-height: 0.88;
+    text-wrap: balance;
+  }
+  /* A warm light leak passing through the letters: multiplied, so it only
+     tints the chalk type and disappears against the ink ground. */
+  :where(.concept-studio, .studio-portal) .st-leak {
+    position: relative;
+  }
+  :where(.concept-studio, .studio-portal) .st-leak::after {
+    content: '';
+    position: absolute;
+    inset: -10% -6%;
+    z-index: 1;
+    background: linear-gradient(
+      100deg,
+      transparent 28%,
+      var(--color-flare) 44%,
+      var(--color-ultra-soft) 58%,
+      transparent 72%
+    );
+    mix-blend-mode: multiply;
+    -webkit-mask-image: linear-gradient(transparent, #000 22%, #000 78%, transparent);
+    mask-image: linear-gradient(transparent, #000 22%, #000 78%, transparent);
+    opacity: 0;
+    transform: translate3d(-62%, 0, 0);
+    pointer-events: none;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    :where(.concept-studio, .studio-portal) .st-leak[data-inview]::after {
+      animation: st-leak 3.4s cubic-bezier(0.37, 0, 0.63, 1) 0.2s both;
+    }
+    :where(.concept-studio, .studio-portal) .st-leak[data-inview]:hover::after {
+      animation: st-leak-again 2.6s cubic-bezier(0.37, 0, 0.63, 1) both;
+    }
+  }
+  :where(.concept-studio, .studio-portal) .st-closing__rows {
+    margin-top: clamp(3rem, 2rem + 4vw, 6rem);
+    border-top: 1px solid var(--st-line-light);
+  }
+  :where(.concept-studio, .studio-portal) .st-bigrow {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    grid-template-columns: 2rem minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 1rem;
+    padding: clamp(1.25rem, 1rem + 1vw, 2rem) 0;
+    border-bottom: 1px solid var(--st-line-light);
+    --focus: var(--color-chalk);
+    transition: color 0.45s var(--st-ease);
+  }
+  :where(.concept-studio, .studio-portal) .st-bigrow::before {
+    content: '';
+    position: absolute;
+    inset: 0 calc(var(--st-gutter) * -1);
+    z-index: -1;
+    transform: scaleY(0);
+    transform-origin: 50% 100%;
+    transition: transform 0.6s var(--st-ease);
+  }
+  :where(.concept-studio, .studio-portal) .st-bigrow--flare::before {
+    background: var(--color-flare);
+  }
+  :where(.concept-studio, .studio-portal) .st-bigrow--ultra::before {
+    background: var(--color-ultra);
+  }
+  :where(.concept-studio, .studio-portal) .st-bigrow:hover::before,
+  :where(.concept-studio, .studio-portal) .st-bigrow:focus-visible::before {
+    transform: none;
+  }
+  :where(.concept-studio, .studio-portal) .st-bigrow--flare:hover,
+  :where(.concept-studio, .studio-portal) .st-bigrow--flare:focus-visible {
+    color: var(--color-ink);
+  }
+  :where(.concept-studio, .studio-portal) .st-bigrow--ultra:hover,
+  :where(.concept-studio, .studio-portal) .st-bigrow--ultra:focus-visible {
+    color: #fff;
+  }
+  :where(.concept-studio, .studio-portal) .st-bigrow__text {
+    font-size: clamp(1.8rem, 0.9rem + 3.6vw, 4.75rem);
+    font-weight: 500;
+    font-stretch: 90%;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    transition: transform 0.6s var(--st-ease);
+  }
+  :where(.concept-studio, .studio-portal) .st-bigrow__arrow {
+    font-size: clamp(1.5rem, 1rem + 2vw, 3.5rem);
+    line-height: 1;
+    transform: rotate(-45deg);
+    transition: transform 0.6s var(--st-ease);
+  }
+  :where(.concept-studio, .studio-portal) .st-bigrow:hover .st-bigrow__text {
+    transform: translate3d(0.9rem, 0, 0);
+  }
+  :where(.concept-studio, .studio-portal) .st-bigrow:hover .st-bigrow__arrow {
+    transform: none;
+  }
+
+  /* ---- FAQ ----------------------------------------------------------------- */
+  :where(.concept-studio, .studio-portal) .st-faq [data-slot='accordion-trigger'] > span:last-child {
+    border-width: 1px;
+  }
+
+  /* ---- Footer -------------------------------------------------------------- */
+  :where(.concept-studio, .studio-portal) .st-footer {
+    padding-block: clamp(4rem, 3rem + 4vw, 7rem) 2rem;
+    overflow-x: clip;
+  }
+  :where(.concept-studio, .studio-portal) .st-footer__mark {
+    margin: clamp(3.5rem, 2rem + 6vw, 8rem) 0 clamp(1.25rem, 1rem + 1vw, 2rem);
+    padding-bottom: 0.16em;
+    font-size: min(17.2vw, 19.5rem);
+    font-weight: 500;
+    font-stretch: 84%;
+    letter-spacing: -0.06em;
+    line-height: 0.8;
+    white-space: nowrap;
+  }
+
+  /* ---- Cursor follower ----------------------------------------------------- */
+  :where(.concept-studio, .studio-portal) .st-cursor {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 55;
+    pointer-events: none;
+  }
+  :where(.concept-studio, .studio-portal) .st-cursor__body {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: grid;
+    place-items: center;
+    background: var(--color-ink);
+    color: var(--color-chalk);
+    border: 1.5px solid transparent;
+    transition: background-color 0.3s var(--st-ease), border-color 0.3s var(--st-ease), opacity 0.3s var(--st-ease);
+  }
+  :where(.concept-studio, .studio-portal) .st-cursor[data-tone='chalk'] .st-cursor__body {
+    background: var(--color-chalk);
+    color: var(--color-ink);
+  }
+  :where(.concept-studio, .studio-portal) .st-cursor[data-mode='stick'] .st-cursor__body {
+    background: transparent;
+    border-color: var(--color-ink);
+  }
+  :where(.concept-studio, .studio-portal) .st-cursor[data-mode='stick'][data-tone='chalk'] .st-cursor__body {
+    border-color: var(--color-chalk);
+  }
+  :where(.concept-studio, .studio-portal) .st-cursor[data-mode='hidden'] .st-cursor__body {
+    opacity: 0;
+  }
+  :where(.concept-studio, .studio-portal) .st-cursor__label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  :where(.concept-studio, .studio-portal) .st-cursor[data-mode='label'] .st-cursor__label {
+    opacity: 1;
+    transition-delay: 0.08s;
+  }
+
+  /* ---- Load choreography (CSS only, so it runs without JS) ----------------- */
+  @media (prefers-reduced-motion: no-preference) {
+    :where(.concept-studio, .studio-portal) .st-rise {
+      animation: st-rise 1.15s var(--st-ease) both;
+      animation-delay: calc(120ms + var(--i) * 95ms);
+    }
+    :where(.concept-studio, .studio-portal) .st-fade {
+      animation: st-rise-soft 1s var(--st-ease) both;
+      animation-delay: calc(160ms + var(--i) * 95ms);
+    }
+    :where(.concept-studio, .studio-portal) .st-frame {
+      animation: st-rise-soft 1.1s var(--st-ease) both;
+      animation-delay: calc(520ms + var(--i) * 70ms);
+    }
+    :where(.concept-studio, .studio-portal) .st-window.st-sheen::after {
+      animation: st-sheen 1.8s var(--st-ease) 1.15s both;
+    }
+    :where(.concept-studio, .studio-portal) .st-wframe {
+      animation: st-rise-soft 1s var(--st-ease) both;
+      animation-delay: calc(560ms + var(--i) * 55ms);
+    }
+    :where(.concept-studio, .studio-portal) .st-strip .st-sheen::after {
+      animation: st-sheen 1.7s var(--st-ease) both;
+      animation-delay: calc(1.25s + var(--i) * 150ms);
+    }
+    :where(.concept-studio, .studio-portal) .st-sheen:hover::after {
+      animation: st-sheen-again 1.2s var(--st-ease);
+    }
+  }
+}
+
+@keyframes st-rise {
+  from {
+    transform: translate3d(0, 108%, 0) rotate(3deg);
+  }
+}
+@keyframes st-rise-soft {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 22px, 0);
+  }
+}
+@keyframes st-sheen {
+  to {
+    transform: translate3d(260%, 0, 0) skewX(-14deg);
+  }
+}
+@keyframes st-sheen-again {
+  to {
+    transform: translate3d(260%, 0, 0) skewX(-14deg);
+  }
+}
+@keyframes st-leak {
+  0% {
+    opacity: 0;
+    transform: translate3d(-62%, 0, 0);
+  }
+  25%,
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(30%, 0, 0);
+  }
+}
+@keyframes st-leak-again {
+  0% {
+    opacity: 0;
+    transform: translate3d(-62%, 0, 0);
+  }
+  25%,
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(30%, 0, 0);
+  }
+}
+@keyframes st-redraw {
+  0% {
+    background-size: 100% 1px;
+    background-position: 100% 100%;
+  }
+  45% {
+    background-size: 0% 1px;
+    background-position: 100% 100%;
+  }
+  46% {
+    background-size: 0% 1px;
+    background-position: 0% 100%;
+  }
+  100% {
+    background-size: 100% 1px;
+    background-position: 0% 100%;
+  }
+}

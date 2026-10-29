@@ -6,6 +6,7 @@ import { AnimatePresence, useInView, useMotionValueEvent, useScroll, useTransfor
 import * as m from 'motion/react-m'
 import { LogoMark } from '@/components/graphics/logo'
 import { playbook } from '@/content/home'
+import { sampleAthlete, sampleBrief } from '@/content/sample'
 import { cn } from '@/lib/utils'
 import { GlyphCheck, GlyphO, GlyphX } from './glyphs'
 import { EASE, pad2, SectionIndex } from './parts'
@@ -319,7 +320,7 @@ function ProfileCard({ mine, step }: { mine: boolean; step: number }) {
         <OwnerTag mine={mine} tone="athlete" />
       </div>
       <p className="mt-3 text-[0.9375rem] leading-tight font-semibold tracking-[-0.03em] text-balance sm:text-[1.0625rem]">
-        {mine ? 'Your card goes here.' : 'From our private database.'}
+        {mine ? `${sampleAthlete.name}, ${sampleAthlete.sport}` : 'From our private database.'}
       </p>
       <Fields labels={['Sport', 'School / team', 'Socials', 'Interests']} widths={['72%', '88%', '60%', '80%']} />
       <CardFoot step={step} approvedLabel="Athlete approves" />
@@ -338,7 +339,7 @@ function BriefCard({ mine, step }: { mine: boolean; step: number }) {
         <OwnerTag mine={mine} tone="agency" />
       </div>
       <p className="mt-3 text-[0.9375rem] leading-tight font-semibold tracking-[-0.03em] text-balance sm:text-[1.0625rem]">
-        {mine ? 'Your brief goes here.' : 'A campaign brief.'}
+        {mine ? sampleBrief.title : 'A campaign brief.'}
       </p>
       <Fields labels={['Goal', 'Sports', 'Audience']} widths={['84%', '64%', '76%']} />
       <div className="mt-3 mb-4 flex flex-wrap gap-1">

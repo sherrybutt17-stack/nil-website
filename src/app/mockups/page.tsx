@@ -22,9 +22,9 @@ export default function ConceptsIndexPage() {
           Homepage concepts
         </h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-smoke">
-          Design directions for the homepage, built with the same copy, colours and honest placeholders as the live
-          site. Each has its own header, navigation, motion and footer. The lettered switcher at the bottom of each
-          concept flips between them.
+          Design directions for the homepage, built with the live site’s copy and colours. Each has its own header,
+          navigation, motion and footer, and the lettered switcher at the bottom of each concept flips between them.
+          Partner logos, campaign posts, athletes and contact details on these pages are fictional sample data.
         </p>
 
         <ul className="mt-14 grid gap-4 md:grid-cols-2 xl:grid-cols-3">

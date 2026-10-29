@@ -261,6 +261,35 @@ src/lib/{inquiry-schema,deliver,metadata,og,utils}.ts(x)
 
   Accessibility, best practices and SEO all scored 100.
 
+## Homepage concepts (2026-10-29)
+
+- **Brief.** The user asked for five entirely different, highly polished homepage designs with the site's colours and content, plus shimmer and motion, that don't look AI-made. They're review pages; the live homepage is unchanged. The first serif, editorial concept (Broadsheet) was rejected and removed.
+- **Routes.** `/mockups` is the index. The concepts are listed in `src/content/concepts.ts`:
+  - **A · Kinetic** (`/mockups/kinetic`): a sports-brand campaign look. Full-bleed colour blocks, fit-to-width Archivo that stretches (`wdth`) as it arrives, a speed shimmer, and kinetic bands.
+  - **B · Floodlight** (`/mockups/floodlight`): dark and cinematic. Stadium light beams, an LED ribbon, a pinned horizontal playbook, and sticky "fold" transitions.
+  - **C · Crossover** (`/mockups/crossover`): Swiss and product-like. An Athletes | Agencies switch (`?view=`) re-renders the page, and a match console shows each review state.
+  - **D · Rookie Card** (`/mockups/rookie-card`): the collectible athlete card. A holographic card tilts with the pointer, side cards flip, and a scroll-dealt deck walks through the process.
+  - **E · Studio** (`/mockups/studio`): a creative-studio site in Instrument Sans. It has a cursor follower, magnetic buttons, stacking panels, a hover-reveal list and a drag reel.
+- **Sample data.** At the user's request, the concepts show fictional sample content instead of placeholders:
+  - It comes from `src/content/sample.ts`: invented brands and athletes, an `@realnil.example` email and a city.
+  - `src/components/mockups/sample-contact.tsx` swaps in for `@/components/placeholder`.
+  - The images in `public/sample/` are generated, original artwork.
+  - The switcher and the index both say it's sample data.
+  - The live pages keep their placeholders and never import the sample module.
+- **Shared plumbing.**
+  - `src/components/layout/site-chrome.tsx` leaves out the site header, `<main>` and footer on concept routes, and adds the A–E `ConceptSwitcher`.
+  - `src/content/home.ts` holds the shared homepage copy.
+  - Each concept lives only in `src/components/mockups/<slug>/`. Its CSS sits in `@layer components`, scoped under the concept's class, with colours from tokens.
+- **References.** The work was informed by studying open-source repos; no code was copied and no dependencies were added:
+  - Vercel Web Interface Guidelines, Darkroom satus, Guardian Source and Supabase www;
+  - pokemon-cards-css (GPL, technique only);
+  - Cuberto mouse-follower, Codrops scroll typography and Splitting.js.
+- **Checks.** A production build passed. At 320, 390, 768 and 1440 px, with and without reduced motion, every concept had no overflow and exactly one h1. axe found zero violations, there were no console errors, and the phone menu opened, closed on Escape and returned focus. axe scans run with the page at rest, because Floodlight's folds dim sections while they're covered.
+- **Workflow lessons.**
+  - Don't let the user preview a shared dev server that's mid-build: one missing import makes every route fail. Serve reviewed work from a separate production build instead.
+  - Commit or push only when the user asks; "give me a URL" meant a local URL.
+- **Next step.** Once the user picks a concept, carry it across `/athletes`, `/agencies`, `/contact` and the forms.
+
 ## Commands
 
 ```bash

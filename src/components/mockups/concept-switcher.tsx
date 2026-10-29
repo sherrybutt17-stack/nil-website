@@ -13,7 +13,9 @@ export function ConceptSwitcher({ current }: { current: ConceptSlug }) {
         href="/mockups"
         className="flex min-h-9 items-center rounded-full px-3 text-[0.6875rem] font-bold tracking-[0.14em] text-chalk/70 uppercase hover:text-chalk"
       >
-        Concepts
+        {/* The concepts show fictional sample content, so say so wherever they're viewed. */}
+        <span className="sm:hidden">Sample</span>
+        <span className="hidden sm:inline">Concepts · sample data</span>
       </Link>
       {concepts.map((concept) => {
         const active = concept.slug === current

@@ -6,6 +6,12 @@
 
 export const concepts = [
   {
+    slug: 'kinetic',
+    letter: 'A',
+    name: 'Kinetic',
+    summary: 'Loud and athletic, like a sports-brand campaign: full-bleed colour blocks and giant type that stretches and moves as you scroll.',
+  },
+  {
     slug: 'floodlight',
     letter: 'B',
     name: 'Floodlight',
@@ -16,6 +22,18 @@ export const concepts = [
     letter: 'C',
     name: 'Crossover',
     summary: 'Precise and interactive: pick your side and the whole page switches to athlete or agency content.',
+  },
+  {
+    slug: 'rookie-card',
+    letter: 'D',
+    name: 'Rookie Card',
+    summary: 'Built around the collectible athlete card: holographic cards that tilt and shimmer under your cursor, and a deck that deals out the process.',
+  },
+  {
+    slug: 'studio',
+    letter: 'E',
+    name: 'Studio',
+    summary: 'An award-style creative studio site: smooth stacking panels, a cursor that reacts to what it touches, magnetic buttons and masked type reveals.',
   },
 ] as const
 
